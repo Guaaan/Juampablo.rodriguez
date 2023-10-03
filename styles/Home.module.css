@@ -1,0 +1,28 @@
+.scenebody {
+  /* Estilos para el contenedor principal del canvas */
+  /* Por ejemplo: */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scenecontainer {
+  /* Estilos para el contenedor del canvas */
+  /* Por ejemplo: */
+  position: relative;
+  width: 80%;
+  height: 80%;
+}
+
+/* Aquí puedes agregar más estilos CSS si los necesitas para otros elementos en tu componente */
+/* Por ejemplo: */
+
+.box {
+  /* Estilos para la caja */
+  /* Por ejemplo: */
+  width: 100px;
+  height: 100px;
+  background-color: hotpink;
+}
