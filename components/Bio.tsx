@@ -15,7 +15,7 @@ const Intro = () => {
         </div>
       </section>
       <section className="flex-col md:flex-row flex items-center md:justify-betwe">
-      <button class="bg-[#0000ff] text-white ...">
+      <button className="bg-[#0000ff] text-white ...">
   Share on Twitter
 </button>
       </section>
