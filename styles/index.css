@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fat-anchor {
+    color: #000000;
+    transition: color 0.9s, transform 0.1s;
+    text-decoration: none;
+}
+
+
+.fat-anchor:hover {
+    color: #0000ff;
+  }

@@ -1,5 +1,5 @@
-import { CMS_NAME } from '../lib/constants'
-import Typewriter from 'typewriter-effect';
+import { CMS_NAME } from "../lib/constants";
+import Typewriter from "typewriter-effect";
 
 const Intro = () => {
   return (
@@ -9,7 +9,7 @@ const Intro = () => {
       </h1>
       <div className="text-center md:text-left text-lg mt-5 md:pl-8">
         repositorio de creación digital.
-      {/* <Typewriter
+        {/* <Typewriter
         onInit={(typewriter) => {
           typewriter.typeString('Hello World!')
             .callFunction(() => {
@@ -25,7 +25,7 @@ const Intro = () => {
       /> */}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Intro
+export default Intro;
