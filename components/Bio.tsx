@@ -15,9 +15,13 @@ const Intro = () => {
         </div>
       </section>
       <section className="flex-col md:flex-row flex items-center md:justify-betwe">
-      <button className="bg-[#0000ff] text-white ...">
-  Share on Twitter
-</button>
+        <button className="bg-[#0000ff] text-white ...">
+          botón
+        </button>
+
+        <p>
+          Es un desarrollador de software nacido en septiembre del año 2000, desde que puede recordar usaba la computadora de su casa, una ibm beige que 
+        </p>
       </section>
     </>
   );
