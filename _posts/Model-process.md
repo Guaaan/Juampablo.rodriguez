@@ -10,7 +10,7 @@ ogImage:
   url: "/assets/blog/preview/cover.png"
 ---
 
-## El siguiente Proceso es el más cómodo que he encontrado para modelar personajes en 3d sin excederse de tiemp ni poligonos en el intento.
+## El siguiente Proceso es el más cómodo que he encontrado para modelar personajes en 3d sin excederse de tiempo ni poligonos en el intento.
 
 El primer paso al abrir blender será tomar el cubo por defecto
 
