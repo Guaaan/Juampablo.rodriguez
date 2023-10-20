@@ -1,19 +1,31 @@
 ---
-title: 'Dynamic Routing and Static Generation'
-excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
+title: 'Recopilación Masiva de Datos en Portales de Venta'
+excerpt: 'Scrapy el modulo de Python '
 coverImage: '/assets/blog/dynamic-routing/cover.jpg'
 date: '2020-03-16T05:35:07.322Z'
 author:
   name: 
-  picture: '/assets/blog/authors/jj.jpeg'
+  picture: '/assets/blog/authors/juan.jpg'
 ogImage:
   url: '/assets/blog/dynamic-routing/cover.jpg'
 ---
+En un mundo cada vez más orientado hacia la información y los datos, la capacidad de recopilar grandes cantidades de información de manera eficiente se ha convertido en una necesidad crítica para muchas empresas y proyectos de investigación. Uno de los desafíos comunes es la obtención de datos de portales de venta en línea, que a menudo albergan una gran cantidad de información relevante. En este artículo, exploraremos un proyecto que utiliza Scrapy en Python para extraer datos de manera masiva de estos portales, almacenarlos en archivos JSON y, finalmente, cargarlos en una base de datos SQL Server.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
+El Proyecto
+Este proyecto se centra en recopilar información de portales de venta en línea, como tiendas de comercio electrónico o sitios de subastas, de manera masiva. A continuación, desglosaremos las principales etapas del proyecto y cómo utilizamos diferentes componentes tecnológicos para lograrlo.
 
-Venenatis cras sed felis eget velit. Consectetur libero id faucibus nisl tincidunt. Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat consequat mauris nunc congue nisi vitae. Id aliquet risus feugiat in ante metus dictum at tempor. Sed blandit libero volutpat sed cras. Sed odio morbi quis commodo odio aenean sed adipiscing. Velit euismod in pellentesque massa placerat. Mi bibendum neque egestas congue quisque egestas diam in arcu. Nisi lacus sed viverra tellus in. Nibh cras pulvinar mattis nunc sed. Luctus accumsan tortor posuere ac ut consequat semper viverra. Fringilla ut morbi tincidunt augue interdum velit euismod.
+1. Spiders
+La primera parte de nuestro proyecto involucra la creación de spiders, que son scripts diseñados específicamente para extraer información de páginas web. En este caso, estos spiders se encargan de recopilar información de productos, como descripciones, precios, categorías y cualquier otro dato relevante. Utilizamos Scrapy, un potente marco de rascado web en Python, que nos permite definir fácilmente cómo deben recopilarse los datos desde las páginas web de destino.
 
-## Lorem Ipsum
+2. Outputs
+Una vez que nuestros spiders han recopilado la información necesaria, almacenamos estos datos en archivos JSON en una carpeta designada como "outputs". Los archivos JSON son una opción flexible para almacenar datos estructurados, ya que son fáciles de procesar y mantener. Esto nos permite realizar análisis posteriores o compartir los datos con otros sistemas o personas de manera sencilla.
 
-Tristique senectus et netus et malesuada fames ac turpis. Ridiculous mus mauris vitae ultricies leo integer malesuada nunc vel. In mollis nunc sed id semper. Egestas tellus rutrum tellus pellentesque. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Quis blandit turpis cursus in hac habitasse platea dictumst quisque. Eros donec ac odio tempor orci dapibus ultrices. Aliquam sem et tortor consequat id porta nibh. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla. Diam vulputate ut pharetra sit amet. Ut tellus elementum sagittis vitae et leo. Arcu non odio euismod lacinia at quis risus sed vulputate.
+3. Store
+La última fase de nuestro proyecto implica la inserción de los datos recopilados en los archivos JSON en una base de datos SQL Server. Para lograr esto, utilizamos Python con la librería PyODBC, que nos permite conectarnos y manipular bases de datos SQL Server de manera eficiente. Desarrollamos scripts que toman los datos desde los archivos JSON en la carpeta "outputs" y los insertan en tablas específicas de la base de datos.
+
+Resumen
+En este proyecto, hemos aprovechado la potencia de Python y Scrapy para extraer datos de manera masiva de portales de venta en línea. Utilizamos archivos JSON como un medio eficiente para almacenar estos datos y, finalmente, los cargamos en una base de datos SQL Server para su análisis y posterior uso.
+
+La combinación de estas tecnologías ofrece una solución efectiva para la recopilación, almacenamiento y gestión de datos de portales de venta en línea. Al automatizar el proceso con Scrapy, garantizamos la precisión y la consistencia de los datos recopilados, lo que es fundamental para proyectos que dependen de información precisa y actualizada. Además, la capacidad de almacenar estos datos en una base de datos SQL Server nos permite realizar análisis avanzados y obtener información valiosa.
+
+En resumen, este proyecto demuestra cómo Python y Scrapy pueden ser herramientas poderosas para la recopilación de datos en línea, y cómo PyODBC y SQL Server pueden ser utilizados para gestionar y analizar eficazmente estos datos. Si está interesado en proyectos de recopilación masiva de datos, esta combinación de tecnologías podría ser una solución ideal para sus necesidades.
