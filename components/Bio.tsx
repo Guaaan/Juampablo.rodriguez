@@ -14,15 +14,44 @@ const Intro = () => {
           <p className="font-serif font-thin">te debes estar preguntando.</p>
         </div>
       </section>
-      <section className="flex-col md:flex-row flex items-center md:justify-betwe">
-        <button className="bg-[#0000ff] text-white ...">
-          botón
-        </button>
+      <div className="flex-row md:flex-row flex items-center md:justify-betwen">
+        <div className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12 items-start">
+          <button className="bg-[#0000ff] text-center text-white font-serif py-1 px-4">
+            Claro!
+          </button>
+        </div>
+        <div className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12 items-start">
+          <a
+            href="/"
+            className="btn bg-[#ff0000] hover:bg-[#bb0000] text-white font-serif py-1 px-4"
+          >
+            no realmente
+          </a>
+        </div>
+      </div>
+      <div className="flex-row md:flex-row flex items-center md:justify-betwen">
+        {/* <div className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12 items-start">
+          <button className="bg-[#0000ff] text-center text-white font-serif py-1 px-4">
+            Claro!
+          </button>
+        </div>
+        <div className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12 items-start">
+          <a
+            href="/"
+            className="btn bg-[#ff0000] hover:bg-[#bb0000] text-white font-serif py-1 px-4"
+          >
+            no realmente
+          </a>
+        </div> */}
 
-        <p>
-          Es un desarrollador de software nacido en septiembre del año 2000, desde que puede recordar usaba la computadora de su casa, una ibm beige que 
-        </p>
-      </section>
+        <div className="max-w-2xl flex-rw mx-auto">
+          <p>
+            Es un desarrollador de software nacido en septiembre del año 2000,
+            desde que puede recordar usaba la computadora de su casa, una ibm
+            beige que
+          </p>
+        </div>
+      </div>
     </>
   );
 };
