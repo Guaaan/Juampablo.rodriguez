@@ -1,6 +1,6 @@
 ---
 title: 'Recopilación Masiva de Datos en Portales de Venta'
-excerpt: 'Scrapy el modulo de Python '
+excerpt: 'Scrapy el modulo de Python'
 coverImage: '/assets/blog/dynamic-routing/cover.jpg'
 date: '2020-03-16T05:35:07.322Z'
 author:
@@ -25,7 +25,3 @@ La última fase de nuestro proyecto implica la inserción de los datos recopilad
 
 Resumen
 En este proyecto, hemos aprovechado la potencia de Python y Scrapy para extraer datos de manera masiva de portales de venta en línea. Utilizamos archivos JSON como un medio eficiente para almacenar estos datos y, finalmente, los cargamos en una base de datos SQL Server para su análisis y posterior uso.
-
-La combinación de estas tecnologías ofrece una solución efectiva para la recopilación, almacenamiento y gestión de datos de portales de venta en línea. Al automatizar el proceso con Scrapy, garantizamos la precisión y la consistencia de los datos recopilados, lo que es fundamental para proyectos que dependen de información precisa y actualizada. Además, la capacidad de almacenar estos datos en una base de datos SQL Server nos permite realizar análisis avanzados y obtener información valiosa.
-
-En resumen, este proyecto demuestra cómo Python y Scrapy pueden ser herramientas poderosas para la recopilación de datos en línea, y cómo PyODBC y SQL Server pueden ser utilizados para gestionar y analizar eficazmente estos datos. Si está interesado en proyectos de recopilación masiva de datos, esta combinación de tecnologías podría ser una solución ideal para sus necesidades.

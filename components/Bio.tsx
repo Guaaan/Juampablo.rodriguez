@@ -28,7 +28,7 @@ const Intro = () => {
               onClick={handleShowBio}
               className="bg-[#0000ff] text-center text-white font-serif py-1 px-4 m-5"
             >
-              por favor!
+              dime!
             </button>
           </div>
           <div className="flex-col md:flex-row flex items-center md:justify-between mt-2 mb-6 md:mb-8 items-start">
@@ -36,7 +36,7 @@ const Intro = () => {
               href="/"
               className="btn bg-[#ff0000] text-white font-serif py-1 px-4 m-5"
             >
-              no realmente.
+              no quiero saber.
             </a>
           </div>
         </div>
@@ -45,40 +45,17 @@ const Intro = () => {
       {showBio && (
         <div className="bio-content flex-row md:flex-row flex items-center md:justify-betwen">
           <div className="max-w-2xl flex-row mx-auto">
-            <p>
-              Es un desarrollador de software nacido en septiembre del año 2000
-              en Mérida, Venezuela. Desde antes de poder leer o escribir, usando
-              la computadora de su casa y la Nintendo 64 de un primo desarrolló
-              una pasión por la informática y los videojuegos.
-            </p>
+            <p>Juampablo Rodríguez Rojas 2000. Merida, Venezuela.</p>
 
-            <br />
             <p>
-              Gracias a tumblr en 2012 aprendió a editar el HTML de su blog. En
-              2015 realiza un curso de diseño web en el instituto Simón Bolivar
-              donde aprende HTML y CSS.
-            </p>
-
-            <br />
-            <p>
-              En 2018 migra a chile donde luego de dos años estudia programación
-              fullstack, donde aprende Javascript, Python y posteriormente C#.
-              para dedidcarse a desarrollar sistemas administrativos, paginas
-              web y proyectos de web scraping a tiempo completo.
-            </p>
-            <br />
-            <p>
-              Luego de tres años de aprender 3D de manera autodidacta en su
-              tiempo libre combinando su conocimiento en programación orientada
-              a objetos comienza a desarrollar proyectos en el motor de
-              videojuegos Unity y darle vida a TUGURIOS: una serie de espacios
-              oniricos interectivos.
-            </p>
-            <br />
-            <p>
-              Actualmente se encuentra empleado, trabajando para IMQ Soluciones
-              de manera remota; y como siempre, trabajando en proyectos
-              personales.
+              Desarrollador de software residenciado en Chile. Conoció su pasión
+              por las computadoras antes de saber leer, de niño vió clases de
+              guitarra y editó código HTML gracias a Tumblr; Estudió diseño de
+              páginas web en el instituto Simón Bolivar de Mérida así como una
+              certificación de desarrollo fullstack en 4Geeks academy en
+              Santiago de Chile. Actualmente se dedica a desarrollar soluciones
+              web y de inteligencia artificial para IMQ, mientras aprende a
+              desarrollar videojuegos de manera independiente en su tiempo libre.
             </p>
           </div>
           <div className="flex-row md:flex-row flex items-center mt-2 mb-6 md:mb-8">
@@ -87,6 +64,12 @@ const Intro = () => {
               className="btn bg-[#ff0000] text-white font-serif py-1 px-4 m-5"
             >
               volver al inicio.
+            </a>
+            <a
+              href="https://www.linkedin.com/in/juampablorodriguez/"
+              className="btn bg-[#0000ff] text-white font-serif py-1 px-4 m-5"
+            >
+              quiero contactar con Juampablo.
             </a>
           </div>
         </div>
