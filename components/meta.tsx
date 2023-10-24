@@ -34,9 +34,9 @@ const Meta = () => {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta
         name="description"
-        content={`A statically generated blog example using Next.js and ${CMS_NAME}.`}
+        content={`Desarrollador de software y videojuegos.`}
       />
-      <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      {/* <meta property="og:image" content={HOME_OG_IMAGE_URL} /> */}
     </Head>
   )
 }
