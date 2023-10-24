@@ -1,13 +1,13 @@
 ---
 title: 'Recopilación Masiva de Datos en Portales de Venta'
-excerpt: 'Scrapy el modulo de Python'
-coverImage: '/assets/blog/dynamic-routing/cover.jpg'
+excerpt: 'Mi método de web scraping usando Python'
+coverImage: '/assets/blog/dynamic-routing/cover.jpeg'
 date: '2020-03-16T05:35:07.322Z'
 author:
   name: 
   picture: '/assets/blog/authors/juan.jpg'
 ogImage:
-  url: '/assets/blog/dynamic-routing/cover.jpg'
+  url: '/assets/blog/dynamic-routing/cover.jpeg'
 ---
 En un mundo cada vez más orientado hacia la información y los datos, la capacidad de recopilar grandes cantidades de información de manera eficiente se ha convertido en una necesidad crítica para muchas empresas y proyectos de investigación. Uno de los desafíos comunes es la obtención de datos de portales de venta en línea, que a menudo albergan una gran cantidad de información relevante. En este artículo, exploraremos un proyecto que utiliza Scrapy en Python para extraer datos de manera masiva de estos portales, almacenarlos en archivos JSON y, finalmente, cargarlos en una base de datos SQL Server.
 

@@ -39,4 +39,4 @@ Así, luego de buscar en internet, leer foros, reddit, ver videos de youtube, en
 ![cubo](/assets/blog/tugurios/IMG_2.GIF "Text to show on mouseover")
 # V. Publicación.
 
-Para cuando leas esta entrada Tugurios ya estará publicado y podrás jugarlo gratis desde el navegador en el siguiente [enlace](https://zamuroatomico.itch.io/tugurios).
+Para cuando leas esta entrada Tugurios ya estará publicado y podrás jugarlo gratis desde el navegador en el siguiente [enlace](https://zamuroatomico.itch.io/tugurios), consta de 7 canciones originales producidas para este proyecto y 8 Escenas. Estoy trabajando en un parche para Mejorar la interfaz de sonido, pero solo dispongo de mis tiempo libre para este proyecto.
