@@ -55,23 +55,26 @@ const Intro = () => {
               certificación de desarrollo fullstack en 4Geeks academy en
               Santiago de Chile. Actualmente se dedica a desarrollar soluciones
               web y de inteligencia artificial para IMQ, mientras aprende a
-              desarrollar videojuegos de manera independiente en su tiempo libre.
+              desarrollar videojuegos de manera independiente en su tiempo
+              libre.
             </p>
           </div>
-          <div className="flex-row md:flex-row flex items-center mt-2 mb-6 md:mb-8">
-            <a
-              href="/"
-              className="btn bg-[#ff0000] text-white font-serif py-1 px-4 m-5"
-            >
-              volver al inicio.
-            </a>
-            <a
-              href="https://www.linkedin.com/in/juampablorodriguez/"
-              className="btn bg-[#0000ff] text-white font-serif py-1 px-4 m-5"
-            >
-              quiero contactar con Juampablo.
-            </a>
-          </div>
+        </div>
+      )}
+      {showBio && (
+        <div className="flex-row md:flex-row flex items-center mt-2 mb-6 md:mb-8">
+          <a
+            href="/"
+            className="btn bg-[#ff0000] text-white font-serif py-1 px-4 m-5"
+          >
+            volver al inicio.
+          </a>
+          <a
+            href="https://www.linkedin.com/in/juampablorodriguez/"
+            className="btn bg-[#0000ff] text-white font-serif py-1 px-4 m-5"
+          >
+            quiero contactar con Juampablo.
+          </a>
         </div>
       )}
     </>
