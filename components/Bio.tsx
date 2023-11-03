@@ -54,9 +54,9 @@ const Intro = () => {
               páginas web en el instituto Simón Bolivar de Mérida así como una
               certificación de desarrollo fullstack en 4Geeks academy en
               Santiago de Chile. Actualmente se dedica a desarrollar soluciones
-              web y de inteligencia artificial para IMQ, mientras aprende a
-              desarrollar videojuegos de manera independiente en su tiempo
-              libre.
+              web y de inteligencia artificial para IMQ, actualmente se
+              encuentra estudiando desarrollo de videojuegos en la Universidad
+              Tecnologica de Buenos Aires.
             </p>
           </div>
         </div>
