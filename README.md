@@ -1,63 +1,87 @@
-# A statically generated blog example using Next.js, Markdown, and TypeScript
+# ZamuroAtomico - Blog personal de Juampablo Rodríguez
 
-This is the existing [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter) plus TypeScript.
+> Este proyecto es el código fuente de mi blog personal, desplegado en Vercel: [juampablorodriguez-raak-git-master-guaaans-projects.vercel.app](https://juampablorodriguez-raak-git-master-guaaans-projects.vercel.app)
 
-This example showcases Next.js's [Static Generation](https://nextjs.org/docs/basic-features/pages) feature using Markdown files as the data source.
+## Descripción
 
-The blog posts are stored in `/_posts` as Markdown files with front matter support. Adding a new Markdown file in there will create a new blog post.
+ZamuroAtomico es un blog personal donde comparto artículos, tutoriales, procesos creativos y experiencias sobre desarrollo de software, videojuegos, modelado 3D y más. El sitio está construido con **Next.js**, **TypeScript**, **Tailwind CSS** y utiliza archivos **Markdown** para gestionar los posts.
 
-To create the blog posts we use [`remark`](https://github.com/remarkjs/remark) and [`remark-html`](https://github.com/remarkjs/remark-html) to convert the Markdown files into an HTML string, and then send it down as a prop to the page. The metadata of every post is handled by [`gray-matter`](https://github.com/jonschlinkert/gray-matter) and also sent in props to the page.
+El proyecto está basado en el repositorio [blog-starter de Vercel](https://github.com/vercel/next.js/tree/canary/examples/blog-starter), adaptado y personalizado para mis necesidades.
 
-## Demo
+## Tecnologías principales
 
-[https://next-blog-starter.vercel.app/](https://next-blog-starter.vercel.app/)
+- **Next.js**: Framework React para aplicaciones web modernas y generación estática.
+- **TypeScript**: Tipado estático para mayor robustez y mantenibilidad.
+- **Tailwind CSS**: Utilidades CSS para estilos rápidos y personalizables.
+- **Markdown**: Los posts se escriben en formato Markdown y se almacenan en la carpeta `/_posts`.
+- **remark** y **remark-html**: Procesan y convierten Markdown a HTML.
+- **gray-matter**: Extrae metadatos (front matter) de los archivos Markdown.
+- **Vercel**: Despliegue automático y hosting.
 
-## Deploy your own
+## Estructura del proyecto
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/blog-starter)
+- `/_posts`: Artículos y entradas del blog en formato Markdown.
+- `/components`: Componentes reutilizables de React para la UI.
+- `/pages`: Páginas principales del sitio (inicio, about, quien-soy, posts dinámicos).
+- `/public/assets`: Imágenes y recursos multimedia usados en los posts y la web.
+- `/styles`: Archivos CSS y módulos de estilos.
+- `/lib`: Funciones utilitarias para manejo de posts y Markdown.
+- `/interfaces`: Tipos TypeScript para posts y autores.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/blog-starter&project-name=blog-starter&repository-name=blog-starter)
+## Características
 
-### Related examples
+- **Blog estático**: Los posts se generan de forma estática para máxima velocidad y SEO.
+- **Soporte para imágenes**: Cada post puede tener imágenes de portada y contenido.
+- **Diseño responsivo y moderno**: Gracias a Tailwind CSS.
+- **Página de autor**: Información sobre Juampablo Rodríguez.
+- **Despliegue continuo**: Cada push en el repo se despliega automáticamente en Vercel.
 
-- [WordPress](/examples/cms-wordpress)
-- [DatoCMS](/examples/cms-datocms)
-- [Sanity](/examples/cms-sanity)
-- [TakeShape](/examples/cms-takeshape)
-- [Prismic](/examples/cms-prismic)
-- [Contentful](/examples/cms-contentful)
-- [Strapi](/examples/cms-strapi)
-- [Agility CMS](/examples/cms-agilitycms)
-- [Cosmic](/examples/cms-cosmic)
-- [ButterCMS](/examples/cms-buttercms)
-- [Storyblok](/examples/cms-storyblok)
-- [GraphCMS](/examples/cms-graphcms)
-- [Kontent](/examples/cms-kontent)
-- [Umbraco Heartcore](/examples/cms-umbraco-heartcore)
-- [Builder.io](/examples/cms-builder-io)
-- [TinaCMS](/examples/cms-tina/)
-- [Enterspeed](/examples/cms-enterspeed)
+## Cómo agregar un nuevo post
 
-## How to use
+1. Crea un archivo Markdown en la carpeta `/_posts` siguiendo el formato de los ejemplos existentes.
+2. Incluye los metadatos (front matter) al inicio del archivo:
+   ```md
+   ---
+   title: "Título del post"
+   excerpt: "Resumen breve"
+   coverImage: "/ruta/a/imagen.jpg"
+   date: "YYYY-MM-DD"
+   author:
+     name: Juampablo Rodríguez
+     picture: "/ruta/a/foto.jpg"
+   ogImage:
+     url: "/ruta/a/imagen.jpg"
+   ---
+   Contenido en Markdown...
+   ```
+3. Al hacer push, el post aparecerá automáticamente en el blog tras el despliegue en Vercel.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Instalación y desarrollo local
 
-```bash
-npx create-next-app --example blog-starter blog-starter-app
-```
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Guaaan/Juampablo.rodriguez.git
+   cd Juampablo.rodriguez
+   ```
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+3. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+4. Accede a [http://localhost:3000](http://localhost:3000) para ver el blog en local.
 
-```bash
-yarn create next-app --example blog-starter blog-starter-app
-```
+## Despliegue
 
-```bash
-pnpm create next-app --example blog-starter blog-starter-app
-```
+El blog se despliega automáticamente en Vercel. Puedes hacer tu propio fork y conectar el repo a Vercel para tener tu versión online.
 
-Your blog should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
+## Créditos y agradecimientos
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- Basado en [blog-starter de Vercel](https://github.com/vercel/next.js/tree/canary/examples/blog-starter).
+- Personalizado y mantenido por Juampablo Rodríguez ([LinkedIn](https://www.linkedin.com/in/juampablorodriguez/)).
 
-# Notes
+## Licencia
 
-`blog-starter` uses [Tailwind CSS](https://tailwindcss.com) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3).
+Este proyecto se distribuye bajo la licencia MIT.
