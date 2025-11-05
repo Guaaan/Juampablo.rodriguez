@@ -1,8 +1,8 @@
 ---
-title: "Oh tocar guitarra: un devlog sobre escalas, física y caos armónico"
-excerpt: "Primer vistazo a un videojuego que une física, ragdolls y teoría musical para explorar las escalas modales de una forma interactiva."
-coverImage: "/assets/blog/ohtocarguitarra/portada.png"
-date: "2025-07-30T19:57:14.419389"
+title: "Oh Tocar Guitarra: el inicio de un devlog"
+excerpt: "Primeras ideas, pruebas técnicas y decisiones creativas detrás de mi nuevo videojuego musical"
+coverImage: "https://resourcesyacare.blob.core.windows.net/juampablo/OTG/WGxMEd.png"
+date: "2024-11-08T05:35:07.322Z"
 author:
   name: Juampablo
   picture: "/assets/blog/authors/juan.jpg"
@@ -10,27 +10,39 @@ ogImage:
   url: "/assets/blog/ohtocarguitarra/portada.png"
 ---
 
-Volvía de Santiago a Viña del Mar cuando una idea medio absurda me atravesó la cabeza: ¿y si hacía un ragdoll que caminara aplicando fuerza entre la cabeza y las piernas, como si tirara de sí mismo? Y aún más raro: ¿y si este personaje tocaba guitarra en una habitación y su sonido hacía vibrar tanto las cosas que todo empezara a caer y rodar por el piso?
+# I. Un viaje y una idea
 
-# I. Componer un videojuego
+Un día, mientras volvía de Santiago a Viña, me encontré jugando con la idea de un **ragdoll que caminara**. Imaginaba aplicar fuerzas físicas: el rigidbody de la cabeza subiendo, el de las piernas bajando. Entre esas pruebas mentales apareció una visión más potente:  
+¿qué pasaría si este personaje **tocara guitarra en una habitación** y, con la fuerza de sus vibraciones, hiciera que las cosas alrededor **cayeran y rodaran por el suelo**?
 
-No era solo una idea mecánica, también estaba pasando por un momento musical. Llevaba meses haciendo un curso de composición, y justo estaba comprendiendo los modos de la escala mayor: dórico, frigio, lidio, etc. Todo hizo clic. Este juego no solo podía tener un componente físico interesante, sino también una función educativa y sensorial: visualizar y experimentar las escalas modales.
+# II. Física y ritmo
 
-# II. Herramientas al servicio de la locura
+El primer desafío fue hacer que el movimiento del muñeco pareciera orgánico. No quería animaciones pregrabadas: quería **física pura**, caos controlado.  
+Poco a poco el personaje comenzó a parecer un **Tamagochi musical**.
 
-Elegí Unity para el motor del juego, Blender para modelar el entorno y Ableton para grabar la guitarra. Quería que cada modo de la escala mayor tuviera su propia atmósfera: luz, color, comportamiento de los objetos en la habitación. Que todo en pantalla respondiera a la música de alguna manera.
+# III. Las herramientas
 
-# III. Física, WebGL y límites reales
+Para darle forma a esta idea me apoyé en tres pilares:  
+- **Unity**, para la programación y físicas.  
+- **Blender**, para modelar la habitación y los objetos que cobrarían vida con las vibraciones.  
+- **Ableton**, para grabar guitarras y dar alma al proyecto.  
 
-Mi primer impulso fue publicarlo como juego WebGL, pero la cantidad de elementos físicos y colliders era tan alta que rápidamente se volvió inviable. La performance caía en picada. Decidí que esta experiencia debía estar pensada para PC y Mac, al menos en esta etapa.
+Desde el principio supe que la música no sería acompañamiento, sino **parte central de la mecánica**.
 
-También cambié la forma de reproducir ritmos: comencé usando pistas de batería pregrabadas, pero luego desarrollé una pequeña drum machine programada, más flexible e interactiva.
+# IV. Los límites del navegador
 
-# IV. Una decisión clave: escalas con la misma tónica
+Mi primer objetivo fue publicarlo en **WebGL**. Quería que cualquiera pudiera jugarlo desde el navegador.  
+Pero el motor de físicas, con tantos colliders y cuerpos dinámicos, terminó siendo demasiado pesado. La simulación colapsaba.  
+Tuve que aceptar una decisión importante: el juego debía nacer como **versión para PC y Mac**. Esto me dio más libertad y una mejor base para seguir iterando.
 
-Uno de los momentos más importantes del desarrollo fue cuando entendí que para realmente mostrar la diferencia entre los modos, tenía que mantener la misma tónica en todas las escalas. Eso me permitió que el cambio de atmósfera no fuera por el tono en sí, sino por el modo. Y ahí el juego empezó a tener sentido como herramienta sensorial para explorar música.
+# V. Ritmo, feedback y drum machines
 
-# V. Estado del proyecto
+El siguiente paso fue vincular la guitarra con la percusión.  
+Empecé con pistas simples, pero pronto me di cuenta de que necesitaba algo más dinámico: una **drum machine integrada** al juego, que respondiera al tiempo y a la energía del personaje.  
+Fue el primer gran salto de esta idea experimental hacia algo jugable.
 
-Este proyecto sigue en desarrollo, pero pronto lanzaré una beta para que puedas experimentar esta locura sonora y física por ti mismo. Será una forma de tocar guitarra, pero también de ver cómo la música puede sacudir un espacio.
+# VI. Primeras conclusiones
+
+“Oh Tocar Guitarra” nació como un experimento entre física y música, pero rápidamente se transformó en algo más: un **laboratorio de sonido y movimiento**.  
+Este primer acercamiento marcó la base técnica y conceptual sobre la que seguiré construyendo.
 
