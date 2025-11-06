@@ -13,17 +13,26 @@ const Profile = () => {
           <p className="mt-4">
             Desarrollador de software residenciado en Chile. Conoció su pasión
             por las computadoras antes de saber leer, de niño vió clases de
-            guitarra y editó código HTML gracias a Tumblr; Estudió diseño de
-            páginas web en el instituto Simón Bolivar de Mérida así como una
+            guitarra y editó código HTML gracias a Tumblr; En 2015 estudió diseño de
+            páginas web en el instituto Simón Bolivar de Mérida, en 2020 una
             certificación de desarrollo fullstack en 4Geeks academy en
-            Santiago de Chile.
+            Santiago de Chile. 
+          </p>
+          <p className="mt-2">
+            En 2023 estudió desarrollo de veojuegos en la Universidad Tecnológica Nacional de Buenos Aires. 
+          </p>
+          <p className="mt-2">
+            Desde 2024 hasta 2025 vio un curso intensivo de composición musical con Andrés Mondaca.  
+          </p>
+          <p className="mt-2">
+            En 2025 también hizo un curso de artes mediales en el campus oriente de la Pontifica Universidad Católica
           </p>
         </div>
       )
     },
     {
       id: 'instalaciones',
-      title: 'Instalaciones',
+      title: 'Instalaciones Electrónicas',
       color: 'bg-danger text-white',
       content: (
         <div className="max-w-2xl mx-auto">
@@ -59,7 +68,7 @@ const Profile = () => {
     },
     {
       id: 'comercial',
-      title: 'Comercial',
+      title: 'Experiencia Laboral',
       color: 'bg-magenta text-white',
       content: (
         <div className="max-w-2xl mx-auto">

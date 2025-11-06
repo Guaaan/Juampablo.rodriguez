@@ -10,7 +10,7 @@ ogImage:
   url: "/assets/blog/petroglifos/cover.png"
 ---
 
-En 2021, el **ITISB (Instituto de Tecnología, Salud y Bienestar)** de la UNAB me contactó para un proyecto ambicioso: crear un juego educativo en realidad virtual que ayudara a **comunidades de Atacama** a entender el valor de los petroglifos de la región. Además, **instalamos visores MetaQuest en comunas rurales de Atacama** para que las comunidades tuvieran acceso directo al juego. Así nació *"Conociendo los Petroglifos"*.
+En 2024, el **ITISB (Instituto de Tecnología, Salud y Bienestar)** de la UNAB me contactó para un proyecto ambicioso: crear un juego educativo en realidad virtual que ayudara a **comunidades de Atacama** a entender el valor de los petroglifos de la región. Además, **instalamos visores MetaQuest en comunas rurales de Atacama** para que las comunidades tuvieran acceso directo al juego. Así nació *"Conociendo los Petroglifos"*.
 
 ---
 
@@ -21,7 +21,7 @@ El desafío era claro pero complejo: **traducir patrimonio arqueológico en mec�
 1. **Aprendizaje kinestésico**: usar el cuerpo para tallar y pintar.  
 2. **Capa narrativa**: integrar historias diaguitas y collas en el proceso.
 
-![Reunión de diseño](/assets/blog/petroglifos/equipo.jpg "Equipo ITISB y líderes diaguitas")
+![Reunión de diseño](/assets/blog/petroglifos/equipo.jpg "Equipo ITISB")
 
 ---
 

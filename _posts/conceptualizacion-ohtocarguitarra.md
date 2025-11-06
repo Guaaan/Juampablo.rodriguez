@@ -31,9 +31,9 @@ Esto lo puedo lograr a travez de varias escenas cada una representando un modo m
 
 # III. Paleta y atmósfera
 
-Diseñé una **paleta visual** que sigue el espectro del arcoíris. (algo como la vieja manzana de Apple).  
-Los objetos de la habitación, las luces y hasta la interfaz reaccionan al modo activo.  
-El resultado es un espacio que **respira con la música**, donde el caos físico está guiado por una armonía subyacente.
+Diseñé una **paleta de botones** que sigue el espectro del arcoíris. (algo como la vieja manzana de Apple).  
+Los objetos de la habitación reaccionan al movimiento del personaje a traves de esta.  
+El resultado es un espacio que **tipo diorama**, donde el caos físico está guiado por la melodía que decidas crear.
 
 # IV. El alcance del proyecto
 
@@ -43,7 +43,7 @@ El objetivo es que cualquiera pueda “ver” cómo cambia el color, la gravedad
 
 # VI. o que hay actualmente
 
-Actualmente tengo desarrollada una primera [demo en Itch.io](https://www.google.com) donde se puede experimentar con las físicas y la guitarra.
+Actualmente tengo desarrollada una primera [demo en Itch.io](https://zamuroatomico.itch.io/oh-tocar-guitarra) donde se puede experimentar con la drum machine, físicas y guitarra.
 
 aunque la idea es tener todos los modos de una escala de momento solo están implementadas tres escalas: 
 
@@ -58,4 +58,4 @@ Actualmente trabajo en integrar este sistema de en el que evoluciones una escala
 “Oh Tocar Guitarra” está mutando poco a poco, quiero publicarlo como una aplicación movil además de la versión de escritorio. 
 
 
-[Juega OTG! gratis](https://www.google.com)
+[Juega OTG! gratis](https://zamuroatomico.itch.io/oh-tocar-guitarra)
