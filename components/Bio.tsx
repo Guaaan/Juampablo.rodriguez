@@ -36,12 +36,19 @@ const Profile = () => {
       color: 'bg-danger text-white',
       content: (
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">Setup de Desarrollo</h2>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>VSCode como editor principal</li>
-            <li>Terminal iTerm2 con Oh My Zsh</li>
-            <li>Node.js y npm para desarrollo web</li>
-            <li>Git para control de versiones</li>
+          <h2 className="text-2xl font-bold mb-4">Instalaciones y servicios</h2>
+          <p className="mt-2">
+            En los últimos 5 años me he dedicado a instalaciones electrónicas y cableado,
+            especializándome en: cámaras de seguridad, sistemas de audio para bares y
+            restaurantes, y redes para entornos comerciales (impresoras, puntos de
+            venta e integración de servidores). Realizo desde la planificación del
+            tendido de cable hasta la puesta en marcha y configuración de equipos.
+          </p>
+          <ul className="list-disc pl-5 space-y-2 mt-4">
+            <li>Instalación y configuración de sistemas de vigilancia CCTV/IP</li>
+            <li>Montaje de sistemas de audio profesional para locales</li>
+            <li>Redes y conectividad: impresoras, POS y servidores</li>
+            <li>Mantenimiento y soporte técnico on-site</li>
           </ul>
         </div>
       )
@@ -52,15 +59,22 @@ const Profile = () => {
       color: 'bg-success text-white',
       content: (
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">Proyectos Destacados</h2>
+          <h2 className="text-2xl font-bold mb-4">Videojuegos y proyectos creativos</h2>
           <div className="space-y-4">
             <div className="project">
-              <h3 className="text-xl font-semibold">Blog Personal</h3>
-              <p>Un espacio donde comparto mis experiencias y conocimientos.</p>
+              <h3 className="text-xl font-semibold">Oh Tocar Guitarra</h3>
+              <p>Juego musical que combina práctica de guitarra con mecánicas lúdicas,
+              diseñado para aprender y divertirse.</p>
             </div>
             <div className="project">
-              <h3 className="text-xl font-semibold">Portfolio 3D</h3>
-              <p>Showcase de proyectos con Three.js y React Three Fiber.</p>
+              <h3 className="text-xl font-semibold">Corazón Abajo</h3>
+              <p>Aventura narrativa con énfasis en la atmósfera y la composición
+              sonora, desarrollada como proyecto independiente.</p>
+            </div>
+            <div className="project">
+              <h3 className="text-xl font-semibold">Tugurios</h3>
+              <p>Juego de exploración/estrategia con estética retro, creado como
+              proyecto personal y prototipo jugable.</p>
             </div>
           </div>
         </div>
@@ -76,12 +90,20 @@ const Profile = () => {
           <div className="space-y-4">
             <div className="project">
               <h3 className="text-xl font-semibold">IMQ - Soluciones Web</h3>
-              <p>Desarrollo de soluciones empresariales con IA.</p>
+              <p>Desarrollo de soluciones empresariales con enfoque en integración
+              y automatización.</p>
             </div>
             <div className="project">
               <h3 className="text-xl font-semibold">Desarrollo Freelance</h3>
-              <p>Proyectos personalizados para diversos clientes.</p>
+              <p>Proyectos personalizados para clientes variados, abarcando desde
+              aplicaciones web hasta prototipos interactivos.</p>
             </div>
+            <div className="project">
+              <h3 className="text-xl font-semibold">Servicios Técnicos e Instalaciones</h3>
+              <p>Instalaciones electrónicas y soporte para locales comerciales,
+              incluyendo sistemas de vigilancia, audio y redes.</p>
+            </div>
+            <p className="mt-2">Para un listado detallado de puestos y fechas, consulte el CV o contacte directamente.</p>
           </div>
         </div>
       )

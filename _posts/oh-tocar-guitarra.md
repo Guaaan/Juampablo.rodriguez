@@ -1,7 +1,7 @@
 ---
 title: "Oh Tocar Guitarra: el inicio de un devlog"
 excerpt: "Primeras ideas, pruebas técnicas y decisiones creativas detrás de mi nuevo videojuego musical"
-coverImage: "https://resourcesyacare.blob.core.windows.net/juampablo/OTG/WGxMEd.png"
+coverImage: "https://resourcesyacare.blob.core.windows.net/juampablo/OTG/Screenshot%202025-11-05%20at%204.35.05%E2%80%AFPM.png"
 date: "2024-11-08T05:35:07.322Z"
 author:
   name: Juampablo
