@@ -1,7 +1,7 @@
 ---
 title: "Conociendo los petroglifos: el videojuego en realidad virtual que preserva el patrimonio de los petroglifos en la red de museos de Atacama"
 excerpt: "Cómo colaboramos con museos interactivos para enseñar petroglifos a través del Oculus Quest"
-coverImage: "/assets/blog/petroglifos/cover.png"
+coverImage: "https://resourcesyacare.blob.core.windows.net/juampablo/itisb/juego_petroglifos.png"
 date: "2023-11-15T08:45:00.000Z"
 author:
   name: Juampablo
