@@ -65,7 +65,7 @@ const Profile = () => {
     {
       id: "proyectos",
       title: "Proyectos y Soluciones Tecnológicas",
-      color: "bg-success text-white",
+      color: "bg-accent text-white",
       content: (
         <div className="max-w-2xl mx-auto space-y-4">
           <h2 className="text-2xl font-bold mb-4">
@@ -99,7 +99,7 @@ const Profile = () => {
     {
       id: "skills",
       title: "Habilidades Técnicas",
-      color: "bg-accent-7 text-white",
+      color: "bg-success text-white",
       content: (
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-4">Habilidades Técnicas</h2>
@@ -135,7 +135,7 @@ const Profile = () => {
     {
       id: "ia",
       title: "Inteligencia Artificial y Automatización",
-      color: "bg-magenta text-white",
+      color: "bg-danger text-white",
       content: (
         <div className="max-w-2xl mx-auto space-y-4">
           <h2 className="text-2xl font-bold mb-4">
@@ -163,7 +163,7 @@ const Profile = () => {
     {
       id: "software",
       title: "Desarrollo Web y Software",
-      color: "bg-danger text-white",
+      color: "bg-warm text-white",
       content: (
         <div className="max-w-2xl mx-auto space-y-4">
           <h2 className="text-2xl font-bold mb-4">Desarrollo Web y Software</h2>
@@ -183,7 +183,7 @@ const Profile = () => {
     {
       id: "xr",
       title: "VR / AR / Experiencias Inmersivas",
-      color: "bg-warm text-white",
+      color: "bg-warning text-black",
       content: (
         <div className="max-w-2xl mx-auto space-y-4">
           <h2 className="text-2xl font-bold mb-4">
@@ -261,7 +261,7 @@ const Profile = () => {
         <ContactDropdown />
         <a
           href="/"
-          className="btn bg-warm text-white font-serif py-1 px-4 m-5"
+          className="btn bg-warm text-white font-serif py-2 px-4 m-5"
           rel="noopener noreferrer"
         >
           Volver al Inicio
