@@ -13,3 +13,44 @@
     color: #0000ff;
 
 }
+
+/* Secciones estilizadas: parallax y efecto 3D */
+.parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+/* En dispositivos móviles algunos navegadores ignoran background-attachment: fixed; degradamos a scroll normal */
+@media (max-width: 640px) {
+    .parallax-section {
+        background-attachment: scroll;
+    }
+}
+
+.static-3d-section {
+    perspective: 800px;
+}
+.static-3d-bg {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: translateZ(-1px) scale(2);
+    filter: saturate(0.9) brightness(0.7);
+    z-index: 0;
+}
+.static-3d-section > .max-w-7xl {
+    position: relative;
+    z-index: 5;
+}
+.transform-style-3d {
+    transform-style: preserve-3d;
+}
+
+/* pequeño ajuste para que el contenido sea legible encima de fondos fijos */
+.parallax-section .bg-black\/40,
+.static-3d-section .max-w-7xl {
+    backdrop-filter: blur(2px);
+}

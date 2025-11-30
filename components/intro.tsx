@@ -9,7 +9,7 @@ const Intro = () => {
       </h1>
       <div className="text-center md:text-left text-lg mt-5 md:pl-8">
        
-        <p className="flex justify-end font-bold">repositorio de creación digital.</p>
+        <p className="flex justify-end font-bold">Programación e informática.</p>
       </div>
     </section>
     
