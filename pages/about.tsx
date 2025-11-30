@@ -30,7 +30,7 @@ export default function Index({ allPosts}: Props) {
           {/* Secciones estilizadas full-width */}
           <SectionShowcase
             title="Instalaciones informáticas"
-            description="Diseño y mantenimiento de infraestructuras, redes y entornos seguros y escalables para soportar tus aplicaciones y datos."
+            description="Instalación y mantenimiento integral de infraestructura TI: cámaras de seguridad, impresoras en red, redes LAN/Wi‑Fi, servidores Windows/Ubuntu, puntos de red y racks, POS y equipos de trabajo. Servicios dirigidos a PYMES, comercios y farmacias que reducen incidencias operativas y mejoran la velocidad y estabilidad de la red. Solicite un diagnóstico gratuito."
             imageSrc="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1400&q=80"
             variant="parallax"
             titleColorClass="text-emerald-100"
@@ -39,7 +39,7 @@ export default function Index({ allPosts}: Props) {
 
           <SectionShowcase
             title="Aplicaciones web"
-            description="Desarrollo de aplicaciones web modernas, responsivas y accesibles con las mejores prácticas y stack actual."
+            description="Desarrollo de eCommerce, portales B2B, sistemas internos, dashboards y APIs escalables. Trabajamos con Svelte, React/Next.js, Python, Node.js y .NET; bases PostgreSQL/SQL Server y despliegue en AWS/Azure. Entregamos MVPs rápidos, integraciones eficientes y soporte continuo para optimizar procesos y rendimiento."
             imageSrc="https://images.unsplash.com/photo-1555949963-aa79dcee9815?auto=format&fit=crop&w=1400&q=80"
             variant="normal"
             reverse={false}
@@ -48,7 +48,7 @@ export default function Index({ allPosts}: Props) {
 
           <SectionShowcase
             title="Realidad Virtual"
-            description="Experiencias inmersivas con fondos estáticos y efecto 3D para una sensación de profundidad y presencia."
+            description="Creación de experiencias VR para educación, museos, entrenamiento y marketing, compatibles con Meta Quest, PC/VR y WebXR. Desde prototipos hasta soluciones de producción optimizadas para exposición y pruebas de usuario; diseñadas para mejorar la retención y ofrecer experiencias inmersivas sin mareo. Consulte demo."
             imageSrc="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=80"
             variant="static3d"
             titleColorClass="text-violet-200"
@@ -56,7 +56,7 @@ export default function Index({ allPosts}: Props) {
 
           <SectionShowcase
             title="Desarrollo de videojuegos"
-            description="Creación de videojuegos, desde prototipos hasta producción, con enfoque en rendimiento y jugabilidad."
+            description="Desarrollo de juegos indie y serious games (WebGL/PC) con Unity: prototipado, mecánicas, arte 3D básico, sonido, optimización y publicación. Trabajamos con museos, centros educativos e instituciones culturales para crear experiencias interactivas con resultados medibles; títulos y demos publicados en itch.io."
             imageSrc="https://images.unsplash.com/photo-1511515126-9f0b1f1a4d1e?auto=format&fit=crop&w=1400&q=80"
             variant="normal"
             reverse={true}
