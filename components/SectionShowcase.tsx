@@ -20,6 +20,8 @@ const SectionShowcase: React.FC<Props> = ({
   imageSrc,
   variant = 'normal',
   reverse = false,
+  titleColorClass,
+  overlayClass,
 }) => {
   const titleColor = titleColorClass ?? (variant === 'parallax' ? 'text-white' : 'text-slate-900')
 
