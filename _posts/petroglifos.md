@@ -1,7 +1,7 @@
 ---
-title: "Conociendo los petroglifos: el videojuego en realidad virtual que preserva el patrimonio de los petroglifos en la red de museos de Atacama"
-excerpt: "Cómo colaboramos con museos interactivos para enseñar petroglifos a través del Oculus Quest"
-coverImage: "/assets/blog/petroglifos/cover.png"
+title: "Conociendo los petroglifos: desarrollando una experiencia VR para preservar el patrimonio en la Red de Museos de Atacama"
+excerpt: "Mi experiencia creando y testeando un videojuego educativo en Meta Quest junto al museo interactivo de Atacama"
+coverImage: "https://resourcesyacare.blob.core.windows.net/juampablo/itisb/juego_petroglifos.png"
 date: "2023-11-15T08:45:00.000Z"
 author:
   name: Juampablo
@@ -10,94 +10,112 @@ ogImage:
   url: "/assets/blog/petroglifos/cover.png"
 ---
 
-En 2024, el **ITISB (Instituto de Tecnología, Salud y Bienestar)** de la UNAB me contactó para un proyecto ambicioso: crear un juego educativo en realidad virtual que ayudara a **comunidades de Atacama** a entender el valor de los petroglifos de la región. Además, **instalamos visores MetaQuest en comunas rurales de Atacama** para que las comunidades tuvieran acceso directo al juego. Así nació *"Conociendo los Petroglifos"*.
+En 2024 tuve la oportunidad de desarrollar una experiencia VR para Meta Quest enfocada en la preservación del patrimonio arqueológico de la región de Atacama. El proyecto —desarrollado junto al Museo Interactivo y al ITISB— buscaba acercar los petroglifos a las comunidades a través de un videojuego educativo. Para mí, fue una mezcla desafiante de programación, investigación cultural y mucha prueba en terreno con equipos que nunca habían usado realidad virtual.
 
 ---
 
-### I. Objetivos y contexto: cuando la tecnología encuentra a la arqueología
+### I. De la idea al prototipo: mi acercamiento al diseño en VR
 
-El desafío era claro pero complejo: **traducir patrimonio arqueológico en mecánicas de juego**. Los petroglifos —diseños tallados en piedra por pueblos originarios— debían ser interactivos sin perder su significado cultural. Trabajamos con antropólogos del ITISB y **colaboramos con directores de cultura**, quienes nos dieron acceso a **artesanías diaguitas y sus historias**, lo que enriqueció la capa narrativa del juego. Definimos dos pilares fundamentales:
+El proyecto comenzó con una meta clara: crear una experiencia donde cualquier persona, incluso sin conocimiento previo en tecnología, pudiera **tallar y pintar petroglifos** de forma intuitiva dentro del visor.
 
-1. **Aprendizaje kinestésico**: usar el cuerpo para tallar y pintar.  
-2. **Capa narrativa**: integrar historias diaguitas y collas en el proceso.
+Mi primer prototipo era muy simple: permitir que los usuarios dibujaran directamente sobre una superficie con los controles de Meta Quest. Sin embargo, durante las primeras pruebas me di cuenta de que:
 
-![Reunión de diseño](/assets/blog/petroglifos/equipo.jpg "Equipo ITISB")
+- **Los trazos parecían pixelados**.  
+- La experiencia se sentía más como una app de dibujo que como una actividad vinculada al patrimonio.  
 
----
+Ese fracaso inicial me ayudó a replantear el enfoque. Pensé: *“¿qué es lo más real que puedo recrear en VR sin perder accesibilidad?”* Y allí surgió la idea del **martillo y cincel virtual**, inspirada en el trabajo real de tallado.
 
-### II. Primer prototipo: el fracaso que nos hizo pivotear
+Creé un sistema donde los petroglifos estaban divididos en fragmentos ocultos dentro de la roca. Cuando el jugador golpeaba con el martillo y el cincel, pequeñas partículas saltaban y revelaban gradualmente la figura.
 
-Iniciamos con una idea sencilla: *"dibujar petroglifos en una tabla virtual usando los controles del Oculus Quest"*. Usando **OpenXR** (nuestro motor base) y Unity, creamos un sistema de trazos libres. Los problemas llegaron rápido:
-- **Muchos pixeles**: Parecía que lo que dibujabas era un pixel art y no suponía nada más dinámico que dibujar en una hoja. de papel; por lo que decidimos darle otro enfoque. 
-- **¿Por qué no tallamos los petroglifos?**  Tomando inspiración de los golpes que da el personaje de Minecraft decidimos hacer un sistema que usando un martillo y un cincel pudiéramos tallar los petroglifos en una piedra. Lo que hicimos fue separar los petroglifos en partes de la piedra y ocultarlos, para que al golpear la piedra con el martillo y el cincel se fueran descubriendo los petroglifos. 
+Fue la primera vez que sentí: *“Ok, esto realmente se siente como tallar piedra.”*
 
----
-
-### III. La solución técnica: particulas y sonido
-
-El nuevo enfoque requería un sistema de dos fases: **tallado y pintura**. 
-- **Tallar**: Usamos un sistema de partículas para simular el polvo de piedra y un sonido de impacto realista. Para esto lo que hicimos usar tres sonidos que van alternando entre sí para que no se repitieran tanto. Las particulas tienen un efecto de *"desvanecimiento"* y *gravedad* para simular el polvo de piedra.
-
-**Pintar** Implementamos la mecánica de pintura mencionada en la parte II usando un hueso y varias tintas de colores que asemejan las pinturas que usaban los diaguitas. Para esto usamos un sistema de *"raycasting"* para detectar la posición del pincel y aplicar el color en la textura de la piedra.
-<!-- 1. **Tallado con martillo y cincel**:  
-   - **OpenXR + Oculus SDK**  
-   - Sistema de desgaste procedural: las piedras se "rompían" realísticamente si golpeabas fuera del patrón.  
-
-2. **Pintura con hueso de cóndor**:  
-   - Pigmentos basados en recetas diaguitas (rojo = óxido de hierro, blanco = yeso).  
-   - **Optimización clave**: Redujimos *draw calls* en un 40% usando *GPU Instancing* para las texturas.   -->
-
-![Tallado en acción](/assets/blog/petroglifos/tallar.gif "Golpeando piedra virtual")
+![Prototipo en VR](https://resourcesyacare.blob.core.windows.net/juampablo/itisb/Screenshot%202024-07-08%20at%201.06.57%E2%80%AFPM.png "Prototipo en VR")
 
 ---
 
-### IV. Viajes a terreno: capacitando comunidades bajo el sol atacameño
+### II. Resolviendo la técnica: partículas, sonido y texturas vivas
 
-Mientras redefiníamos las mecánicas, surgió un reto paralelo: **capacitar a comunidades en el uso de Meta Quest**. Realicé tres viajes financiados por el ITISB donde se enseñó a los encargados y encargadas de cultura a usar los visores y a instalar el juego. Las comunidades fueron:
+Una vez definido el concepto, me enfoqué en hacerlo satisfactorio a nivel sensorial.
 
-- **Alto del Carmen**:  
+**Para el tallado:**
+- Usé un sistema de partículas con gravedad para simular el polvo desprendiéndose.  
+- Incorporé tres sonidos de impacto que rotan aleatoriamente para evitar repetición.  
+- Ajusté la vibración háptica para que cada golpe se sintiera diferente.
 
-- **Tierra Amarilla**:  
- 
-  <!-- **Descubrimiento**:  -->
+**Para la pintura:**
+- Implementé un sistema de raycasting que detecta la posición del pincel (un “hueso” inspirado en las herramientas diaguitas).  
+- La textura de la piedra se va coloreando en tiempo real, igual que pintar sobre yeso.
 
-- **Copiapó**:  
+Este fue uno de los puntos donde más aprendí de VR: pequeños detalles —una sombra, un sonido, un delay mínimo— cambian completamente la experiencia.
 
-![Capacitación en terreno](/assets/blog/petroglifos/capacitacion.jpg "Ajustando headset en Tierra Amarilla")
-
----
-
-### V. Resultados: números que hablan (y comunidades que crean)
-
-- **85% de retención**: Niños completaban ambas fases (vs. 35% en prototipo inicial).  
-- **12 comunidades autónomas**: Operan los Quest sin soporte externo.  
-- **Reconocimiento ministerial**: Premio a *"Innovación Patrimonial 2022"*.  
-
-El momento más gratificante llegó por WhatsApp: niñas de Copiapó recrearon petroglifos en arcilla **tras jugar en VR**. Habíamos cerrado el círculo: de lo digital a lo tangible.
-
-![Arte comunitario](/assets/blog/petroglifos/arcilla.jpg "Petroglifos de arcilla post-experiencia VR")
+<!-- ![Tallado en acción](/assets/blog/petroglifos/tallar.gif "Golpeando piedra virtual") -->
 
 ---
 
-### VI. Lo que aprendí: código vs. cultura
+### III. La parte más importante: testeo en terreno con el Museo Interactivo
 
-- **OpenXR no entiende de tradiciones**: Tuvimos que mapear gestos de tallado ancestrales a controles manuales.  
-- **La latencia importa (y mucho)**: 20ms de retraso arruinaban la inmersión; lo solucionamos con *TimeWarp* asincrónico.  
-- **El "modo quieto" salvó vómitos**: Teleport entre rocas redujo mareos en 70%.  
+Desarrollar VR es una cosa. Ver a las personas usarla por primera vez, otra totalmente distinta.
+
+Durante tres viajes a terreno trabajé directamente con **encargados y encargadas de cultura** del Museo Interactivo y de la Red de Museos de Atacama. Mi rol fue doble:
+
+1. **Instalar y configurar los Meta Quest**.  
+2. **Enseñar a los equipos a usar el visor y a testear el videojuego con sus comunidades.**
+
+Y aquí es donde todo lo que había programado se puso a prueba.
+
+![Instruyendo](https://resourcesyacare.blob.core.windows.net/juampablo/itisb/instruyendo.jpg "Capacitación e instrucción")
 
 ---
 
-<!-- ### VII. ¿Qué sigue? El futuro es un petroglifo por descifrar
+### IV. Alto del Carmen, Tierra Amarilla y Copiapó: lo que aprendí en terreno
 
-Aunque el ITISB finalizó su financiamiento en 2023, el proyecto sigue vivo:
-- **Port a PICO 4**: Hardware más económico para escuelas rurales.  
-- **Kit educativo**: Maletín con Quest 2, tabletas para monitores, y manuales en aymara.  
-- **Documental**: Busco editores voluntarios para 120GB de *footage* de Alto del Carmen.  
+Cada comuna tenía una realidad distinta, pero todas compartían algo: era la primera vez que el museo y su personal trabajaban con VR. Las sesiones de testeo fueron clave para ajustar el juego.
 
-![Kit portátil](/assets/blog/petroglifos/maletin.jpg "Prototipo del maletín educativo")
+- **Alto del Carmen:**  
+  Aquí descubrí que debía mejorar el *teleport*. Varias personas se mareaban cuando la transición quedaba muy brusca, así que ajusté el "modo quieto".
+-
+![Guanacos 1](https://resourcesyacare.blob.core.windows.net/juampablo/itisb/guanacos.png "Guanacos")
 
---- -->
+- **Tierra Amarilla:**  
+  El equipo del museo fue muy activo en dar feedback. Noté que el cilindro del martillo era muy pequeño para usuarios sin experiencia, así que hice una versión más grande y fácil de manipular.
+-
+![Guanacos 2](https://resourcesyacare.blob.core.windows.net/juampablo/itisb/guanacos2.png "Guanacos 2")
 
-**Para museos o escuelas**: El software es gratuito de usar en la Red de Museos de Atacama, 
+- **Copiapó:**  
+  Probamos la experiencia con niños y adultos mayores. Fue donde comprobé que la mecánica de pintura generaba mucha conexión emocional. Varias personas comentaron que querían replicar los petroglifos en casa.
 
-![url](https://rmid.cl/ "RMID")
+![GORE](https://resourcesyacare.blob.core.windows.net/juampablo/itisb/gore.jpg "Reunión con GORE")
+
+![Capacitación en terreno](/assets/blog/petroglifos/Innauguracion.jpg "Ajustando headset en Tierra Amarilla")
+
+---
+
+### V. Resultados: más que un videojuego
+
+Tras las sesiones con el museo, ajustes y optimización para Quest, logramos:
+
+- **Que los equipos del museo aprendieran a operar los visores sin depender de soporte técnico.**  
+- **Que las comunidades reconocieran los petroglifos** y entendieran mejor su origen gracias a la experiencia práctica.  
+- **Que la experiencia se volviera parte del programa educativo de la Red de Museos de Atacama.**
+
+Uno de mis mejores recuerdos es un mensaje del Museo Interactivo donde me enviaron fotos de niñas y niños recreando los petroglifos en arcilla después de usar la experiencia en VR. Ese tipo de impacto es difícil de medir en código, pero muy fácil de sentir en terreno.
+
+<!-- ![Arte comunitario](/assets/blog/petroglifos/arcilla.jpg "Petroglifos de arcilla post-experiencia VR") -->
+
+---
+
+### VI. Reflexiones finales: desarrollar VR con sentido
+
+Este proyecto me enseñó que:
+
+- La realidad virtual no tiene que ser compleja para ser significativa.  
+- Testear en terreno cambia completamente tus decisiones de diseño.  
+- Cuando trabajas con patrimonio cultural, **cada mecánica importa** y debe respetar lo que representa.
+
+Desarrollar este juego no fue solo hacer VR: fue un puente entre tecnología, cultura y educación. Y fue un honor construirlo junto al museo y las comunidades.
+
+---
+
+**Para museos o escuelas:** La experiencia está disponible gratuitamente dentro de la Red de Museos de Atacama.
+
+![url](https://rmid.cl/wp-content/uploads/2023/12/logo-rmid.png "RMID")

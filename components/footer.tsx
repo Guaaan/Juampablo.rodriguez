@@ -14,7 +14,7 @@ const Footer = () => {
           </h3>
           <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
             <a
-              href={"https://github.com/Guaaan"}
+              href={"https://github.com/Guaaan/Juampablo.rodriguez?tab=readme-ov-file"}
               className="mx-3 font-bold hover:underline"
             >
               ver en GitHub
