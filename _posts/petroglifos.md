@@ -116,6 +116,6 @@ Desarrollar este juego no fue solo hacer VR: fue un puente entre tecnología, cu
 
 ---
 
-**Para museos o escuelas:** La experiencia está disponible gratuitamente dentro de la Red de Museos de Atacama.
+**Para museos o escuelas:** La experiencia está disponible dentro de la Red de Museos de Atacama.
 
 ![url](https://rmid.cl/wp-content/uploads/2023/12/logo-rmid.png "RMID")
