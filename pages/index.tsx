@@ -2,6 +2,8 @@ import Container from '../components/container'
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
+import SectionShowcaseCreative from '../components/SectionShowcaseCreative'
+import { useState } from 'react'
 
 import Layout from '../components/layout'
 import { getAllPosts, getAllPoems } from '../lib/api'
@@ -23,6 +25,7 @@ type Book = {
 export default function Index({ allPosts}: Props) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
+  const [inverted, setInverted] = useState(false)
   return (
     <>
       <Layout>
@@ -31,6 +34,44 @@ export default function Index({ allPosts}: Props) {
         </Head>
         <Container>
           <Intro />
+          {/* Creative icon-based showcases (minimal, interactive) */}
+          <div className="max-w-4xl mx-auto mt-8 space-y-4">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-2xl font-semibold">soy un computín y en este blog escribo sobre eso </h2>
+            </div>
+
+            <SectionShowcaseCreative
+              title="Instalaciones informáticas"
+              description="Redes, CCTV, servidores y soporte para PYMES."
+              icon="server"
+              color="emerald"
+              invert={inverted}
+            />
+
+            <SectionShowcaseCreative
+              title="Aplicaciones web"
+              description="eCommerce, APIs y portales con despliegue en la nube."
+              icon="code"
+              color="sky"
+              invert={inverted}
+            />
+
+            <SectionShowcaseCreative
+              title="Realidad Virtual"
+              description="Prototipos VR/WebXR para educación y museos."
+              icon="vr"
+              color="violet"
+              invert={inverted}
+            />
+
+            <SectionShowcaseCreative
+              title="Desarrollo de videojuegos"
+              description="Prototipado, mecánicas y publicación con Unity."
+              icon="gamepad"
+              color="amber"
+              invert={inverted}
+            />
+          </div>
           {/* el post grande que se ve en medio */}
           {heroPost && (
             <HeroPost

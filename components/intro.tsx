@@ -15,28 +15,16 @@ const Intro = () => {
     setIsClient(true);
   }, []);
 
-  const initTypewriter = useCallback(
-    (typewriter) => {
-      const slogans = SLOGANS.slice(); // copia del array
-      let index = 0;
-
-      const typeNext = () => {
-        const slogan = slogans[index % slogans.length];
-        typewriter
-          .typeString(slogan)
-          .pauseFor(2400)
-          .deleteChars(slogan.length)
-          .callFunction(() => {
-            index += 1;
-            typeNext();
-          });
-      };
-
-      typeNext();
-      typewriter.start();
-    },
-    []
-  );
+  // Use the built-in options of `typewriter-effect` for stability (looped strings)
+  const typewriterOptions = {
+    strings: SLOGANS,
+    autoStart: true,
+    loop: true,
+    delay: 70,
+    deleteSpeed: 40,
+    pauseFor: 2400,
+    cursor: '|',
+  }
 
   return (
     <section className="flex-col md:flex-row flex items-center md:justify-between mt-4 mb-16 md:mb-12">
@@ -48,7 +36,7 @@ const Intro = () => {
       </h1>
       <div className="text-center md:text-left text-lg mt-5 md:pl-8">
         <p className="flex justify-end font-bold">
-          {isClient && <Typewriter onInit={initTypewriter} options={{ cursor: "|" }} />}
+          {isClient && <Typewriter options={typewriterOptions} />}
         </p>
       </div>
     </section>
