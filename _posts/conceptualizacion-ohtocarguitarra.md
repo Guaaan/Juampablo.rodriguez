@@ -1,6 +1,6 @@
 ---
-title: "Oh tocar guitarra: escalas, colores y el caos armónico"
-excerpt: "Explorando el vínculo entre las escalas modales, los colores y la energía de la música a través de la física y el juego."
+title: "Oh tocar guitarra: Conceptualización de un software musical"
+excerpt: "Explorando  las escalas modales y la energía de la música a través software de un tamagochi ."
 coverImage: "https://resourcesyacare.blob.core.windows.net/juampablo/OTG/WGxMEd.png"
 date: "2025-07-30T19:57:14.419389"
 author:

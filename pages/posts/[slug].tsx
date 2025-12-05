@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
 import Container from '../../components/container'
 import PostBody from '../../components/post-body'
 import Header from '../../components/header'
@@ -22,7 +21,7 @@ export default function Post({ post, morePosts, preview }: Props) {
   const router = useRouter()
   const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
+    return null
   }
   return (
     <Layout preview={preview}>
@@ -59,7 +58,9 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, [
+  let post
+  try {
+    post = getPostBySlug(params.slug, [
     'title',
     'date',
     'slug',
@@ -67,8 +68,16 @@ export async function getStaticProps({ params }: Params) {
     'content',
     'ogImage',
     'coverImage',
-  ])
+    ])
+  } catch (e) {
+    return { notFound: true }
+  }
+
   const content = await markdownToHtml(post.content || '')
+
+  if (!post || !post.slug) {
+    return { notFound: true }
+  }
 
   return {
     props: {
