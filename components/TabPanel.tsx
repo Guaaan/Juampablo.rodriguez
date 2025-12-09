@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 interface TabItem {
   id: string;
@@ -13,6 +14,7 @@ interface TabPanelProps {
 
 const TabPanel: React.FC<TabPanelProps> = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState<string>(''); // inicio sin nada activo
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const toggle = (id: string) => {
     setActiveTab(prev => (prev === id ? '' : id));

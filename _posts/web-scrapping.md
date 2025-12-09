@@ -1,6 +1,6 @@
 ---
 title: 'Recopilación Masiva de Datos en Portales de Venta'
-excerpt: 'Mi método de web scraping usando Python'
+excerpt: 'Como hice una app para comparar los precios de los medicamentos en Chile usando python'
 coverImage: '/assets/blog/dynamic-routing/cover.jpeg'
 date: '2020-03-16T05:35:07.322Z'
 author:

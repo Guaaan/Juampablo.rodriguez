@@ -1,6 +1,7 @@
 import React from "react";
 import TabPanel from "./TabPanel";
 import ContactDropdown from "./ContactDropdown";
+import RotatingImage from "./RotatingImage";
 
 const Profile = () => {
   const tabs = [
@@ -250,11 +251,21 @@ const Profile = () => {
           ¿Juampablo Rodríguez?
         </h1>
       </section>
-      <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-700">
-        Apasionado por la tecnología desde la infancia, Juampablo Rodríguez
-        combina desarrollo de software e instalaciones informáticas, colaborando
-        desde 2020 con empresas, pymes e individuos.
-      </p>
+      <div className="max-w-4xl mx-auto mt-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div className="md:w-1/2">
+            <p className="text-lg text-gray-700">
+              Apasionado por la tecnología desde la infancia, Juampablo Rodríguez
+              combina desarrollo de software e instalaciones informáticas, trabajando
+              desde 2020 con empresas, pymes e individuos.
+            </p>
+          </div>
+
+          <div className="md:w-1/2 flex justify-center">
+            <RotatingImage src="/assets/blog/authors/juan.jpg" />
+          </div>
+        </div>
+      </div>
       <TabPanel tabs={tabs} />
 
       <div className="flex justify-center mt-6">
