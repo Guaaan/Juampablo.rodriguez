@@ -1,4 +1,4 @@
-import { CMS_NAME } from "../lib/constants";
+import { CMS_NAME } from "@/lib/constants";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import Typewriter from "typewriter-effect";
 

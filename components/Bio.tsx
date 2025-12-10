@@ -2,6 +2,7 @@ import React from "react";
 import TabPanel from "./TabPanel";
 import ContactDropdown from "./ContactDropdown";
 import RotatingImage from "./RotatingImage";
+import Link from 'next/link'
 
 const Profile = () => {
   const tabs = [
@@ -248,6 +249,9 @@ const Profile = () => {
     <>
       <section className="flex-col md:flex-row flex items-center md:justify-between">
         <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
+          <Link href="/" className="hover:underline fat-anchor">
+            {"<"}
+          </Link>
           ¿Juampablo Rodríguez?
         </h1>
       </section>
@@ -255,9 +259,10 @@ const Profile = () => {
         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
           <div className="md:w-1/2">
             <p className="text-lg text-gray-700">
-              Apasionado por la tecnología desde la infancia, Juampablo Rodríguez
-              combina desarrollo de software e instalaciones informáticas, trabajando
-              desde 2020 con empresas, pymes e individuos.
+              Apasionado por la tecnología desde la infancia, Juampablo
+              Rodríguez combina desarrollo de software e instalaciones
+              informáticas, trabajando desde 2020 con empresas, pymes e
+              individuos.
             </p>
           </div>
 

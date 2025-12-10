@@ -1,31 +1,33 @@
-import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
-import SectionShowcaseCreative from '../components/SectionShowcaseCreative'
-import { useState } from 'react'
+import Container from "../components/container";
+import MoreStories from "../components/more-stories";
+import HeroPost from "../components/hero-post";
+import Intro from "../components/intro";
+import SectionShowcaseCreative from "../components/SectionShowcaseCreative";
+import { useState } from "react";
 
-import Layout from '../components/layout'
-import { getAllPosts, getAllPoems } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
-import Post from '../interfaces/post'
+import Layout from "../components/layout";
+import { getAllPosts, getAllPoems } from "../lib/api";
+import Head from "next/head";
+import { CMS_NAME } from "../lib/constants";
+import Post from "../interfaces/post";
+
+import FloatingBubblesVisualization from "../components/FloatingBubblesVisualization";
+import TagBarsVisualization from "../components/TagBarsVisualization";
+import GridVisualization from "../components/GridVisualization";
 
 type Props = {
-  allPosts: Post[]
-}
+  allPosts: Post[];
+};
 
 type Book = {
   title: string;
   position: number;
-}
+};
 
-
-
-export default function Index({ allPosts}: Props) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
-  const [inverted, setInverted] = useState(false)
+export default function Index({ allPosts }: Props) {
+  const heroPost = allPosts[0];
+  const morePosts = allPosts.slice(1);
+  const [inverted, setInverted] = useState(false);
   return (
     <>
       <Layout>
@@ -34,11 +36,18 @@ export default function Index({ allPosts}: Props) {
         </Head>
         <Container>
           <Intro />
-          {/* Creative icon-based showcases (minimal, interactive) */}
+
           <div className="max-w-4xl mx-auto mt-8 space-y-4">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-2xl font-semibold">soy un computín y en este blog escribo sobre eso </h2>
+              
             </div>
+{/* 
+            <FloatingBubblesVisualization posts={allPosts} />
+
+            <TagBarsVisualization posts={allPosts} />
+            <GridVisualization posts={allPosts} /> */}
+
+
 
             <SectionShowcaseCreative
               title="Instalaciones informáticas"
@@ -88,20 +97,20 @@ export default function Index({ allPosts}: Props) {
         </Container>
       </Layout>
     </>
-  )
+  );
 }
 
 export const getStaticProps = async () => {
   const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
+    "title",
+    "date",
+    "slug",
+    "author",
+    "coverImage",
+    "excerpt",
+  ]);
 
   return {
-    props: { allPosts }
-  }
-}
+    props: { allPosts },
+  };
+};
