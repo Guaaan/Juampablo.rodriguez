@@ -1,19 +1,19 @@
-import Container from "../components/container";
-import MoreStories from "../components/more-stories";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
-import SectionShowcaseCreative from "../components/SectionShowcaseCreative";
+import Container from "@/components/container";
+import MoreStories from "@/components/more-stories";
+import HeroPost from "@/components/hero-post";
+import Intro from "@/components/intro";
+import SectionShowcaseCreative from "@/components/SectionShowcaseCreative";
 import { useState } from "react";
 
-import Layout from "../components/layout";
-import { getAllPosts, getAllPoems } from "../lib/api";
+import Layout from "@/components/layout";
+import { getAllPosts, getAllPoems } from "@/lib/api";
 import Head from "next/head";
-import { CMS_NAME } from "../lib/constants";
-import Post from "../interfaces/post";
+import { CMS_NAME } from "@/lib/constants";
+import Post from "@/interfaces/post";
 
-import FloatingBubblesVisualization from "../components/FloatingBubblesVisualization";
-import TagBarsVisualization from "../components/TagBarsVisualization";
-import GridVisualization from "../components/GridVisualization";
+import FloatingBubblesVisualization from "@/components/FloatingBubblesVisualization";
+import TagBarsVisualization from "@/components/posts/TagBarsVisualization";
+import GridVisualization from "@/components/posts/GridVisualization";
 
 type Props = {
   allPosts: Post[];

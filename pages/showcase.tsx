@@ -2,10 +2,10 @@
 import { GetStaticProps } from 'next';
 import PostsShowcase from '@/components/showcase/PostsShowcase';
 import { getAllPosts } from '@/lib/api';
-import type { Post } from '@/types/post';
+import type PostType from '@/interfaces/post';
 
 interface ShowcasePageProps {
-  allPosts: Post[];
+  allPosts: PostType[];
 }
 
 export default function ShowcasePage({ allPosts }: ShowcasePageProps) {

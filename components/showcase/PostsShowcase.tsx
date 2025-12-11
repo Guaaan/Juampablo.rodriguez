@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import type { Post } from '@/types/post';
+import type PostType from '@/interfaces/post';
 
 // Dynamic imports (client-only) to avoid SSR/client markup mismatch
 const TagBubbleUniverse = dynamic(() => import('@/components/posts/TagBubbleUniverse'), { ssr: false });
-const TimelineOrbit = dynamic(() => import('@/components/posts/TimelineOrbit'), { ssr: false });
+const TimelineOrbit = dynamic(() => import('@/components/posts/TimeLineOrbit'), { ssr: false });
 const MagneticGrid = dynamic(() => import('@/components/posts/MagneticGrid'), { ssr: false });
 const ConstellationExplorer = dynamic(() => import('@/components/posts/ConstellationExplorer'), { ssr: false });
 const WaveformTimeline = dynamic(() => import('@/components/posts/WaveformTimeline'), { ssr: false });
 
 interface ShowcaseProps {
-  posts: Post[];
+  posts: PostType[];
   onPostClick?: (slug: string) => void;
 }
 
@@ -23,7 +23,7 @@ interface ShowcaseComponent {
   description: string;
   icon: string;
   color: string;
-  component: React.ComponentType<ShowcaseProps>;
+  component: React.ComponentType<any>;  // Accept any PostType-compatible props
 }
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -35,7 +35,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
-export default function PostsShowcase({ posts }: { posts: Post[] }) {
+export default function PostsShowcase({ posts }: { posts: PostType[] }) {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);

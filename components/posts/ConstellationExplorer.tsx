@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import type PostType from '@/interfaces/post';
 
+// Post type with visualization-specific fields
 interface Post {
   slug: string;
   title: string;
-  excerpt?: string;
   date: string;
+  excerpt?: string;
   coverImage?: string;
   tags?: string[];
 }
