@@ -38,16 +38,28 @@ export default function Index({ allPosts }: Props) {
           <Intro />
 
           <div className="max-w-4xl mx-auto mt-8 space-y-4">
-            <div className="flex items-center justify-between mb-2">
-              
+            <div className="flex items-center justify-between mb-2"></div>
+            <div className="border-l-4 border-blue-600 pl-6 py-4 mb-8">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                Visualizaciones Creativas
+              </h2>
+              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                Como me apasiona el desarrollo frontend, creé varias formas
+                creativas para explorar los posts de mi blog. ¡Descubre
+                diferentes perspectivas de mi contenido!
+              </p>
+              <a
+                href="/showcase"
+                className="text-blue-600 hover:text-blue-700 font-medium text-sm underline underline-offset-2 transition"
+              >
+                Ver Showcase →
+              </a>
             </div>
-{/* 
+            {/* 
             <FloatingBubblesVisualization posts={allPosts} />
 
             <TagBarsVisualization posts={allPosts} />
             <GridVisualization posts={allPosts} /> */}
-
-
 
             <SectionShowcaseCreative
               title="Instalaciones informáticas"
