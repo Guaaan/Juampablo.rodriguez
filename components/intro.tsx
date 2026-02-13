@@ -15,7 +15,9 @@ const Intro = () => {
     setIsClient(true);
   }, []);
 
-  // Use the built-in options of `typewriter-effect` for stability (looped strings)
+  const [hoverJuampa, setHoverJuampa] = useState(false);
+  const [hoverBlog, setHoverBlog] = useState(false);
+
   const typewriterOptions = {
     strings: SLOGANS,
     autoStart: true,
@@ -29,10 +31,24 @@ const Intro = () => {
   return (
     <section className="flex-col md:flex-row flex items-center md:justify-between mt-4 mb-16 md:mb-12">
       <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
-        <a href="/quien-soy" className="fat-anchor">
-          Juampablo
-        </a>
-        g
+        <span className="inline-flex">
+          <span
+            className="transition-colors duration-300 cursor-pointer"
+            style={{ color: hoverJuampa ? '#0000ff' : 'inherit' }}
+            onMouseEnter={() => setHoverJuampa(true)}
+            onMouseLeave={() => setHoverJuampa(false)}
+          >
+            Juampa
+          </span>
+          <span
+            className="transition-colors duration-300 cursor-pointer"
+            style={{ color: hoverBlog ? '#00e436' : 'inherit' }}
+            onMouseEnter={() => setHoverBlog(true)}
+            onMouseLeave={() => setHoverBlog(false)}
+          >
+            blog
+          </span>
+        </span>
       </h1>
       <div className="text-center md:text-left text-lg mt-5 md:pl-8">
         <p className="flex justify-end font-bold">
