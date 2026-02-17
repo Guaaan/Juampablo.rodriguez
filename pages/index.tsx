@@ -1,33 +1,23 @@
-import Container from "@/components/container";
-import MoreStories from "@/components/more-stories";
-import HeroPost from "@/components/hero-post";
-import Intro from "@/components/intro";
-import SectionShowcaseCreative from "@/components/SectionShowcaseCreative";
-import { useState } from "react";
-
-import Layout from "@/components/layout";
-import { getAllPosts, getAllPoems } from "@/lib/api";
-import Head from "next/head";
-import { CMS_NAME } from "@/lib/constants";
-import Post from "@/interfaces/post";
-
-import FloatingBubblesVisualization from "@/components/FloatingBubblesVisualization";
-import TagBarsVisualization from "@/components/posts/TagBarsVisualization";
-import GridVisualization from "@/components/posts/GridVisualization";
+import Container from '@/components/container'
+import MoreStories from '@/components/more-stories'
+import HeroPost from '@/components/hero-post'
+import Intro from '@/components/intro'
+import Layout from '@/components/layout'
+import SectionShowcase from '@/components/SectionShowcase'
+import { getAllPosts } from '@/lib/api'
+import Head from 'next/head'
+import { CMS_NAME } from '@/lib/constants'
+import Post from '@/interfaces/post'
 
 type Props = {
-  allPosts: Post[];
-};
+  allPosts: Post[]
+}
 
-type Book = {
-  title: string;
-  position: number;
-};
 
-export default function Index({ allPosts }: Props) {
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
-  const [inverted, setInverted] = useState(false);
+export default function Index({ allPosts}: Props) {
+  const heroPost = allPosts[0]
+  const morePosts = allPosts.slice(1)
+
   return (
     <>
       <Layout>
@@ -37,62 +27,42 @@ export default function Index({ allPosts }: Props) {
         <Container>
           <Intro />
 
-          <div className="max-w-4xl mx-auto mt-8 space-y-4">
-            <div className="flex items-center justify-between mb-2"></div>
-            <div className="border-l-4 border-blue-600 pl-6 py-4 mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                Visualizaciones Creativas
-              </h2>
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                Como me apasiona el desarrollo frontend, creé varias formas
-                creativas para explorar los posts de mi blog. ¡Descubre
-                diferentes perspectivas de mi contenido!
-              </p>
-              <a
-                href="/showcase"
-                className="text-blue-600 hover:text-blue-700 font-medium text-sm underline underline-offset-2 transition"
-              >
-                Ver Showcase →
-              </a>
-            </div>
-            {/* 
-            <FloatingBubblesVisualization posts={allPosts} />
+          {/* Secciones estilizadas full-width */}
+          <SectionShowcase
+            title="Instalaciones informáticas"
+            description="Instalación y mantenimiento integral de infraestructura TI: cámaras de seguridad, impresoras en red, redes LAN/Wi‑Fi, servidores Windows/Ubuntu, puntos de red y racks, POS y equipos de trabajo. Servicios dirigidos a PYMES, comercios y farmacias que reducen incidencias operativas y mejoran la velocidad y estabilidad de la red. Solicite un diagnóstico gratuito."
+            imageSrc="https://www.todoelectronica.com/img/cms/CCTV%20instalaci%C3%B3n.png"
+            variant="parallax"
+            titleColorClass="text-emerald-100"
+             descriptionColorClass="text-white"
+            overlayClass="bg-emerald-900/40"
+          />
 
-            <TagBarsVisualization posts={allPosts} />
-            <GridVisualization posts={allPosts} /> */}
+          <SectionShowcase
+            title="Aplicaciones web"
+            description="Desarrollo de eCommerce, portales B2B, sistemas internos, dashboards y APIs escalables. Trabajamos con Svelte, React/Next.js, Python, Node.js y .NET; bases PostgreSQL/SQL Server y despliegue en AWS/Azure. Entregamos MVPs rápidos, integraciones eficientes y soporte continuo para optimizar procesos y rendimiento."
+            imageSrc="https://www.promedia.es/wp-content/uploads/2024/11/imagen-3.jpg"
+            variant="normal"
+            reverse={false}
+            titleColorClass="text-sky-700"
+          />
 
-            <SectionShowcaseCreative
-              title="Instalaciones informáticas"
-              description="Redes, CCTV, servidores y soporte para PYMES."
-              icon="server"
-              color="emerald"
-              invert={inverted}
-            />
+          <SectionShowcase
+            title="Realidad Virtual"
+            description="Creación de experiencias VR para educación, museos, entrenamiento y marketing, compatibles con Meta Quest, PC/VR y WebXR. Desde prototipos hasta soluciones de producción optimizadas para exposición y pruebas de usuario; diseñadas para mejorar la retención y ofrecer experiencias inmersivas sin mareo. Consulte demo."
+            imageSrc="https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2023/09/28/meta-quest-3.jpeg"
+            variant="parallax"
+            titleColorClass="text-violet-200"
+          />
 
-            <SectionShowcaseCreative
-              title="Aplicaciones web"
-              description="eCommerce, APIs y portales con despliegue en la nube."
-              icon="code"
-              color="sky"
-              invert={inverted}
-            />
-
-            <SectionShowcaseCreative
-              title="Realidad Virtual"
-              description="Prototipos VR/WebXR para educación y museos."
-              icon="vr"
-              color="violet"
-              invert={inverted}
-            />
-
-            <SectionShowcaseCreative
-              title="Desarrollo de videojuegos"
-              description="Prototipado, mecánicas y publicación con Unity."
-              icon="gamepad"
-              color="amber"
-              invert={inverted}
-            />
-          </div>
+          <SectionShowcase
+            title="Desarrollo de videojuegos"
+            description="Desarrollo de juegos indie y serious games (WebGL/PC) con Unity: prototipado, mecánicas, arte 3D básico, sonido, optimización y publicación. Trabajamos con museos, centros educativos e instituciones culturales para crear experiencias interactivas con resultados medibles; títulos y demos publicados en itch.io."
+            imageSrc="https://img.itch.zone/aW1hZ2UvMzIyODY4NS8yMzk1MzQzNi5wbmc=/original/At0QlG.png"
+            variant="normal"
+            reverse={true}
+            titleColorClass="text-amber-300"
+          />
           {/* el post grande que se ve en medio */}
           {heroPost && (
             <HeroPost
@@ -109,20 +79,20 @@ export default function Index({ allPosts }: Props) {
         </Container>
       </Layout>
     </>
-  );
+  )
 }
 
 export const getStaticProps = async () => {
   const allPosts = getAllPosts([
-    "title",
-    "date",
-    "slug",
-    "author",
-    "coverImage",
-    "excerpt",
-  ]);
+    'title',
+    'date',
+    'slug',
+    'author',
+    'coverImage',
+    'excerpt',
+  ])
 
   return {
-    props: { allPosts },
-  };
-};
+    props: { allPosts }
+  }
+}
