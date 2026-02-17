@@ -281,7 +281,6 @@ const Profile = () => {
           rel="noopener noreferrer"
         >
           Volver al Inicio
-          
         </a>
       </div>
     </>
