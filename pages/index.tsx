@@ -32,7 +32,7 @@ export default function Index({ allPosts }: Props) {
     <>
       <Layout>
         <Head>
-          <title>{`ZamuroAtomico`}</title>
+          <title>{`Juampablo Rodríguez Rojas`}</title>
         </Head>
         <Container>
           <Intro />

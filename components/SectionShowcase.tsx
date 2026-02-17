@@ -10,6 +10,8 @@ type Props = {
   reverse?: boolean
   /** Tailwind class for the title color, e.g. 'text-sky-600' */
   titleColorClass?: string
+  /** Tailwind class for the description color, e.g. 'text-white' */
+  descriptionColorClass?: string
   /** Tailwind classes for the overlay (parallax) e.g. 'bg-indigo-900/40' */
   overlayClass?: string
 }
@@ -21,6 +23,7 @@ const SectionShowcase: React.FC<Props> = ({
   variant = 'normal',
   reverse = false,
   titleColorClass,
+  descriptionColorClass,
   overlayClass,
 }) => {
   const titleColor = titleColorClass ?? (variant === 'parallax' ? 'text-white' : 'text-slate-900')
@@ -38,7 +41,7 @@ const SectionShowcase: React.FC<Props> = ({
         <div className={overlayClass ?? 'bg-black/40'}>
           <div className="max-w-7xl mx-auto px-6 py-20 md:py-32">
             <h2 className={`${titleColor} text-4xl md:text-6xl font-extrabold mb-4`}>{title}</h2>
-            <p className="text-lg md:text-xl max-w-3xl">{description}</p>
+            <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? 'text-white'}`}>{description}</p>
           </div>
         </div>
       </section>
@@ -57,7 +60,7 @@ const SectionShowcase: React.FC<Props> = ({
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className={reverse ? 'order-2' : ''}>
               <h2 className={`${titleColor} text-4xl md:text-5xl font-extrabold mb-4`}>{title}</h2>
-              <p className="text-lg md:text-xl max-w-3xl">{description}</p>
+              <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? 'text-slate-900'}`}>{description}</p>
             </div>
             <div className="transform-style-3d">
               {imageSrc ? (
@@ -85,7 +88,7 @@ const SectionShowcase: React.FC<Props> = ({
         <div className={`grid md:grid-cols-2 gap-8 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
           <div>
             <h2 className={`${titleColor} text-3xl md:text-4xl font-extrabold mb-4`}>{title}</h2>
-            <p className="text-base md:text-lg text-slate-700 max-w-3xl">{description}</p>
+            <p className={`text-base md:text-lg max-w-3xl ${descriptionColorClass ?? 'text-slate-700'}`}>{description}</p>
           </div>
           <div>
             {imageSrc ? (

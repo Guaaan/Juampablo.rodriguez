@@ -22,7 +22,7 @@ export default function Index({ allPosts}: Props) {
     <>
       <Layout>
         <Head>
-          <title>{`ZamuroAtomico`}</title>
+          <title>{`Juampablo Rodríguez Rojas`}</title>
         </Head>
         <Container>
           <Intro />
@@ -31,16 +31,17 @@ export default function Index({ allPosts}: Props) {
           <SectionShowcase
             title="Instalaciones informáticas"
             description="Instalación y mantenimiento integral de infraestructura TI: cámaras de seguridad, impresoras en red, redes LAN/Wi‑Fi, servidores Windows/Ubuntu, puntos de red y racks, POS y equipos de trabajo. Servicios dirigidos a PYMES, comercios y farmacias que reducen incidencias operativas y mejoran la velocidad y estabilidad de la red. Solicite un diagnóstico gratuito."
-            imageSrc="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1400&q=80"
+            imageSrc="https://www.todoelectronica.com/img/cms/CCTV%20instalaci%C3%B3n.png"
             variant="parallax"
             titleColorClass="text-emerald-100"
+             descriptionColorClass="text-white"
             overlayClass="bg-emerald-900/40"
           />
 
           <SectionShowcase
             title="Aplicaciones web"
             description="Desarrollo de eCommerce, portales B2B, sistemas internos, dashboards y APIs escalables. Trabajamos con Svelte, React/Next.js, Python, Node.js y .NET; bases PostgreSQL/SQL Server y despliegue en AWS/Azure. Entregamos MVPs rápidos, integraciones eficientes y soporte continuo para optimizar procesos y rendimiento."
-            imageSrc="https://images.unsplash.com/photo-1555949963-aa79dcee9815?auto=format&fit=crop&w=1400&q=80"
+            imageSrc="https://www.promedia.es/wp-content/uploads/2024/11/imagen-3.jpg"
             variant="normal"
             reverse={false}
             titleColorClass="text-sky-700"
@@ -49,15 +50,15 @@ export default function Index({ allPosts}: Props) {
           <SectionShowcase
             title="Realidad Virtual"
             description="Creación de experiencias VR para educación, museos, entrenamiento y marketing, compatibles con Meta Quest, PC/VR y WebXR. Desde prototipos hasta soluciones de producción optimizadas para exposición y pruebas de usuario; diseñadas para mejorar la retención y ofrecer experiencias inmersivas sin mareo. Consulte demo."
-            imageSrc="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=80"
-            variant="static3d"
+            imageSrc="https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2023/09/28/meta-quest-3.jpeg"
+            variant="parallax"
             titleColorClass="text-violet-200"
           />
 
           <SectionShowcase
             title="Desarrollo de videojuegos"
             description="Desarrollo de juegos indie y serious games (WebGL/PC) con Unity: prototipado, mecánicas, arte 3D básico, sonido, optimización y publicación. Trabajamos con museos, centros educativos e instituciones culturales para crear experiencias interactivas con resultados medibles; títulos y demos publicados en itch.io."
-            imageSrc="https://images.unsplash.com/photo-1511515126-9f0b1f1a4d1e?auto=format&fit=crop&w=1400&q=80"
+            imageSrc="https://img.itch.zone/aW1hZ2UvMzIyODY4NS8yMzk1MzQzNi5wbmc=/original/At0QlG.png"
             variant="normal"
             reverse={true}
             titleColorClass="text-amber-300"

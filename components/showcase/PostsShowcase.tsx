@@ -59,14 +59,14 @@ export default function PostsShowcase({ posts }: { posts: PostType[] }) {
       color: 'from-indigo-500 to-purple-500',
       component: TimelineOrbit
     },
-    {
-      id: 'magnetic',
-      name: 'Magnetic Grid',
-      description: 'Grid con física magnética',
-      icon: '🧲',
-      color: 'from-slate-500 to-purple-500',
-      component: MagneticGrid
-    },
+    // {
+    //   id: 'magnetic',
+    //   name: 'Magnetic Grid',
+    //   description: 'Grid con física magnética',
+    //   icon: '🧲',
+    //   color: 'from-slate-500 to-purple-500',
+    //   component: MagneticGrid
+    // },
     {
       id: 'constellation',
       name: 'Constellation Map',
@@ -75,14 +75,14 @@ export default function PostsShowcase({ posts }: { posts: PostType[] }) {
       color: 'from-blue-500 to-cyan-500',
       component: ConstellationExplorer
     },
-    {
-      id: 'waveform',
-      name: 'Waveform Audio',
-      description: 'Timeline estilo editor de audio',
-      icon: '🎵',
-      color: 'from-green-500 to-emerald-500',
-      component: WaveformTimeline
-    }
+    // {
+    //   id: 'waveform',
+    //   name: 'Waveform Audio',
+    //   description: 'Timeline estilo editor de audio',
+    //   icon: '🎵',
+    //   color: 'from-green-500 to-emerald-500',
+    //   component: WaveformTimeline
+    // }
   ], []);
 
   // Randomizar orden al montar
