@@ -24,6 +24,16 @@ export default function Index({ allPosts}: Props) {
         <Head>
           <title>{`Juampablo Rodríguez Rojas`}</title>
         </Head>
+        <div className="w-full overflow-hidden">
+          <div
+            className="h-98
+
+             sm:h-64 md:h-72 w-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/assets/main-page/mosaico.JPG')",
+            }}
+          />
+        </div>
         <Container>
           <Intro />
 

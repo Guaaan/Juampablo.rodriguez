@@ -7,11 +7,17 @@ const poemsDirectory = join(process.cwd(), '_poems')
 
 //obtiene los posts
 export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory)
+  return fs
+    .readdirSync(postsDirectory, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => entry.name)
 }
 // obtiene los poemas
 export function getPoemsSlugs() {
-  return fs.readdirSync(poemsDirectory)
+  return fs
+    .readdirSync(poemsDirectory, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .map((entry) => entry.name)
 }
 
 export function getPostBySlug(slug: string, fields: string[] = []) {
