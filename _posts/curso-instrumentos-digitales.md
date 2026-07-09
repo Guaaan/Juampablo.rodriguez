@@ -1,7 +1,7 @@
 ---
 title: "Instrumentos musicales virtuales en Unity"
 excerpt: "Diseño de un taller sobre audio interactivo, secuenciadores y sistemas musicales dentro de Unity"
-coverImage: "https://resourcesyacare.blob.core.windows.net/juampablo/talleres/unity-audio.png"
+coverImage: "/assets/blog/curso-instrumentos/portada.png"
 date: "2026-04-20T18:00:00.000Z"
 author:
   name: Juampablo
@@ -65,10 +65,5 @@ Evité arquitecturas demasiado abstractas y prioricé scripts pequeños, modific
 
 Ese tipo de feedback rápido suele ser más útil que una explicación extensa.
 
-# VI. Cierre
-
-Este taller terminó funcionando también como una forma de ordenar varias ideas que venía desarrollando alrededor de audio interactivo, sistemas rítmicos y herramientas musicales dentro de motores de juego.
-
-Probablemente siga expandiendo estas pruebas hacia proyectos más performáticos y experimentales.
 
 Gracias por leer.
