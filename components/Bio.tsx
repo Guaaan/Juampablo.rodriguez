@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TabPanel from "./TabPanel";
 import ContactDropdown from "./ContactDropdown";
 import RotatingImage from "./RotatingImage";
-import Link from 'next/link'
+import Link from "next/link";
 
 const Profile = () => {
+  const [randomVinaImage, setRandomVinaImage] = useState("/vina/1.png");
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * 13) + 1;
+    setRandomVinaImage(`/vina/${randomIndex}.png`);
+  }, []);
   const tabs = [
     {
       id: "experiencia",
@@ -259,10 +265,14 @@ const Profile = () => {
         <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
           <div className="md:w-1/2">
             <p className="text-lg text-gray-700">
-              Apasionado por la tecnología desde la infancia, Juampablo
-              Rodríguez combina desarrollo de software e instalaciones
-              informáticas, trabajando desde 2020 con empresas, pymes e
-              individuos.
+              Desarrollador full stack desde 2020 la cratividad es mi brujula,
+              la tecnología mi barco y la pasipon mis velas. Me especializo en
+              soluciones web, inteligencia artificial y experiencias inmersivas.
+              <br />
+              <br />
+              Mi objetivo es crear aplicaciones y sistemas que no solo sean
+              funcionales, sino también innovadores y atractivos para los
+              usuarios.
             </p>
           </div>
 
@@ -271,6 +281,30 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <img
+        src="/assets/main-page/mosaico.JPG"
+        alt="Mosaico"
+        className="w-full h-68 object-cover rounded-lg mt-6"
+      />
+      <div className="relative left-1/2 w-screen -ml-[50vw] mt-6"></div>
+      <div className="max-w-4xl mx-auto mt-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div className="md:w-1/2">
+            <p className="text-lg text-gray-700">
+              Resido en Viña del Mar. Me desempeño como informático y
+              desarrollador full stack, con experiencia en proyectos de
+              inteligencia artificial, desarrollo web y experiencias inmersivas
+              <br />
+              <br />
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src={randomVinaImage}
+        alt="Imagen aleatoria de Viña"
+        className="w-full h-128 object-cover"
+      />
       <TabPanel tabs={tabs} />
 
       <div className="flex justify-center mt-6">

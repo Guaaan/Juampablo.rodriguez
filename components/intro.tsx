@@ -1,4 +1,5 @@
 import { CMS_NAME } from "@/lib/constants";
+import Link from "next/link";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import Typewriter from "typewriter-effect";
 
@@ -32,22 +33,24 @@ const Intro = () => {
     <section className="flex-col md:flex-row flex items-center md:justify-between mt-4 mb-16 md:mb-12">
       <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
         <span className="inline-flex">
-          <span
+          <Link
+            href="/quien-soy"
             className="transition-colors duration-300 cursor-pointer"
             style={{ color: hoverJuampa ? '#0000ff' : 'inherit' }}
             onMouseEnter={() => setHoverJuampa(true)}
             onMouseLeave={() => setHoverJuampa(false)}
           >
             Juampa
-          </span>
-          <span
+          </Link>
+          <Link
+            href="/blog"
             className="transition-colors duration-300 cursor-pointer"
             style={{ color: hoverBlog ? '#00e436' : 'inherit' }}
             onMouseEnter={() => setHoverBlog(true)}
             onMouseLeave={() => setHoverBlog(false)}
           >
             blog
-          </span>
+          </Link>
         </span>
       </h1>
       <div className="text-center md:text-left text-lg mt-5 md:pl-8">
