@@ -53,14 +53,14 @@ export default function Index({ allPosts}: Props) {
             color="#3a88e7"
             variant="normal"
             reverse={false}
-            titleColorClass="text-sky-700"
+            titleColorClass="text-amber-300"
           />
 
           <SectionShowcase
             title="Realidad Virtual"
             description="Creación de experiencias VR para educación, museos, entrenamiento y marketing, compatibles con Meta Quest, PC/VR y WebXR. Desde prototipos hasta soluciones de producción optimizadas para exposición y pruebas de usuario; diseñadas para mejorar la retención y ofrecer experiencias inmersivas sin mareo. Consulte demo."
             hasPhoto={false}
-            color="#00450e"
+            color="#09a028"
             variant="parallax"
             titleColorClass="text-violet-200"
           />
@@ -71,9 +71,9 @@ export default function Index({ allPosts}: Props) {
             imageSrc="https://img.itch.zone/aW1hZ2UvMzIyODY4NS8yMzk1MzQzNi5wbmc=/original/At0QlG.png"
             hasPhoto={false}
             color="#facc15"
-            variant="normal"
+            variant="parallax"
             reverse={true}
-            titleColorClass="text-amber-300"
+            titleColorClass="text-sky-700"
           />
           <div className="flex justify-center py-14 md:py-20">
             <Link

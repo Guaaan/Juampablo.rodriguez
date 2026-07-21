@@ -24,10 +24,10 @@ interface StarPosition {
   brightness: number;
 }
 
-const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({ 
-  posts, 
+const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
+  posts,
   connectionDistance = 300,
-  onPostClick 
+  onPostClick
 }) => {
   const [cameraPos, setCameraPos] = useState({ x: 0, y: 0, zoom: 1 });
   const [selectedPost, setSelectedPost] = useState<string | null>(null);
@@ -50,7 +50,7 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
       const distance = radius + Math.random() * 200;
       const x = centerX + Math.cos(angle) * distance;
       const y = centerY + Math.sin(angle) * distance;
-      
+
       positions.set(post.slug, {
         x,
         y,
@@ -65,19 +65,19 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
   // Calcular conexiones entre posts relacionados
   const getConnections = () => {
     const connections: Array<[string, string, number]> = [];
-    
+
     posts.forEach((post1, i) => {
       posts.slice(i + 1).forEach(post2 => {
         const commonTags = post1.tags?.filter(t => post2.tags?.includes(t)) || [];
         if (commonTags.length > 0) {
           const pos1 = starPositions.get(post1.slug);
           const pos2 = starPositions.get(post2.slug);
-          
+
           if (pos1 && pos2) {
             const distance = Math.sqrt(
               Math.pow(pos2.x - pos1.x, 2) + Math.pow(pos2.y - pos1.y, 2)
             );
-            
+
             if (distance < connectionDistance) {
               connections.push([post1.slug, post2.slug, commonTags.length]);
             }
@@ -85,7 +85,7 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
         }
       });
     });
-    
+
     return connections;
   };
 
@@ -99,7 +99,7 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePos({ x: e.clientX, y: e.clientY });
-    
+
     if (isDragging) {
       setCameraPos({
         ...cameraPos,
@@ -139,34 +139,32 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
   const connectedToSelected = selectedPost ? getConnectedPosts(selectedPost) : [];
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className="relative w-full h-screen bg-black overflow-hidden cursor-move"
+      className="relative w-full h-screen bg-white overflow-hidden cursor-move"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
       onWheel={handleWheel}
     >
-      {/* Estrellas de fondo decorativas */}
+      {/* Puntos de fondo decorativos */}
       <div className="absolute inset-0">
-        {Array.from({ length: 200 }).map((_, i) => (
+        {Array.from({ length: 150 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-0.5 h-0.5 bg-white rounded-full animate-pulse"
+            className="absolute w-0.5 h-0.5 bg-accent-7 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.3 + 0.1,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
+              opacity: Math.random() * 0.15 + 0.05
             }}
           />
         ))}
       </div>
 
       {/* Espacio de constelaciones */}
-      <div 
+      <div
         className="absolute inset-0"
         style={{
           transform: `translate(${cameraPos.x}px, ${cameraPos.y}px) scale(${cameraPos.zoom})`,
@@ -181,8 +179,8 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
             const pos2 = starPositions.get(slug2);
             if (!pos1 || !pos2) return null;
 
-            const isHighlighted = 
-              selectedPost === slug1 || 
+            const isHighlighted =
+              selectedPost === slug1 ||
               selectedPost === slug2 ||
               hoveredPost === slug1 ||
               hoveredPost === slug2;
@@ -194,9 +192,9 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
                 y1={pos1.y}
                 x2={pos2.x}
                 y2={pos2.y}
-                stroke={isHighlighted ? '#a78bfa' : '#4c1d95'}
+                stroke={isHighlighted ? '#7f5af0' : '#333333'}
                 strokeWidth={isHighlighted ? 2 : 1}
-                opacity={isHighlighted ? 0.8 : 0.3}
+                opacity={isHighlighted ? 0.7 : 0.15}
                 className="transition-all duration-300"
               />
             );
@@ -239,34 +237,34 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
               {/* Estrella base */}
               <div
                 className={`relative rounded-full transition-all duration-300 ${
-                  shouldGlow 
-                    ? 'bg-gradient-to-r from-purple-400 to-pink-400' 
-                    : 'bg-white'
+                  shouldGlow
+                    ? 'bg-accent'
+                    : 'bg-accent-7'
                 }`}
                 style={{
                   width: pos.size * (isSelected ? 3 : isHovered ? 2 : 1),
                   height: pos.size * (isSelected ? 3 : isHovered ? 2 : 1),
                   opacity: pos.brightness,
-                  boxShadow: shouldGlow 
-                    ? `0 0 ${isSelected ? 40 : 20}px rgba(168, 85, 247, ${isSelected ? 1 : 0.6})`
+                  boxShadow: shouldGlow
+                    ? `0 0 ${isSelected ? 20 : 10}px rgba(127, 90, 240, ${isSelected ? 0.5 : 0.3})`
                     : 'none'
                 }}
               />
 
               {/* Info card al hacer hover o seleccionar */}
               {(isHovered || isSelected) && (
-                <div 
+                <div
                   className={`absolute left-full ml-4 w-80 transition-all duration-300 ${
                     isSelected ? 'opacity-100 scale-100' : 'opacity-90 scale-95'
                   }`}
                   style={{ top: '50%', transform: 'translateY(-50%)' }}
                 >
-                  <div className="bg-gradient-to-br from-purple-900/95 to-pink-900/95 backdrop-blur-xl rounded-2xl p-6 border-2 border-purple-400/50 shadow-[0_0_40px_rgba(168,85,247,0.5)]">
+                  <div className="bg-white rounded-2xl p-6 border-2 border-accent shadow-lg">
                     {/* Cover */}
                     {post.coverImage && (
                       <div className="w-full h-32 rounded-lg overflow-hidden mb-4">
-                        <img 
-                          src={post.coverImage} 
+                        <img
+                          src={post.coverImage}
                           alt={post.title}
                           className="w-full h-full object-cover"
                         />
@@ -274,18 +272,18 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
                     )}
 
                     {/* Contenido */}
-                    <div className="text-purple-200 text-xs mb-2">
-                      {new Date(post.date).toLocaleDateString('es-ES', { 
+                    <div className="text-accent-7/60 text-xs mb-2">
+                      {new Date(post.date).toLocaleDateString('es-ES', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
                       })}
                     </div>
-                    <h3 className="text-white text-xl font-black mb-3 leading-tight">
+                    <h3 className="text-black text-xl font-black mb-3 leading-tight">
                       {post.title}
                     </h3>
                     {post.excerpt && (
-                      <p className="text-white/80 text-sm mb-4 line-clamp-3">
+                      <p className="text-accent-7/80 text-sm mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
                     )}
@@ -294,9 +292,9 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
                     {post.tags && post.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2">
                         {post.tags.map(tag => (
-                          <span 
+                          <span
                             key={tag}
-                            className="px-2 py-1 bg-purple-500/30 rounded-full text-purple-200 text-xs font-semibold"
+                            className="px-2 py-1 bg-accent/10 rounded-full text-accent text-xs font-semibold"
                           >
                             #{tag}
                           </span>
@@ -306,8 +304,8 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
 
                     {/* Indicador de conexiones */}
                     {getConnectedPosts(post.slug).length > 0 && (
-                      <div className="mt-4 pt-4 border-t border-purple-400/30">
-                        <p className="text-purple-300 text-xs">
+                      <div className="mt-4 pt-4 border-t border-accent-7/10">
+                        <p className="text-accent-7/60 text-xs">
                           Conectado con {getConnectedPosts(post.slug).length} post{getConnectedPosts(post.slug).length !== 1 ? 's' : ''}
                         </p>
                       </div>
@@ -322,14 +320,14 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
 
       {/* Controles e info */}
       <div className="absolute top-8 left-8 space-y-4">
-        <div className="bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border border-purple-400/30">
-          <h2 className="text-white text-2xl font-black mb-2">
+        <div className="bg-white px-6 py-4 rounded-2xl border border-accent-7/10 shadow-sm">
+          <h2 className="text-black text-2xl font-black mb-2">
             Constellation Explorer
           </h2>
-          <p className="text-purple-200 text-sm mb-4">
+          <p className="text-accent-7/60 text-sm mb-4">
             {posts.length} posts • {connections.length} conexiones
           </p>
-          <div className="space-y-2 text-purple-300 text-xs">
+          <div className="space-y-2 text-accent-7/50 text-xs">
             <p>🖱️ Arrastra para navegar</p>
             <p>🔍 Scroll para zoom</p>
             <p>⭐ Click en las estrellas</p>
@@ -337,16 +335,16 @@ const ConstellationExplorer: React.FC<ConstellationExplorerProps> = ({
         </div>
 
         {/* Zoom indicator */}
-        <div className="bg-black/60 backdrop-blur-md px-4 py-3 rounded-xl border border-purple-400/30">
-          <p className="text-purple-300 text-xs mb-1">Zoom</p>
+        <div className="bg-white px-4 py-3 rounded-xl border border-accent-7/10 shadow-sm">
+          <p className="text-accent-7/50 text-xs mb-1">Zoom</p>
           <div className="flex items-center gap-2">
-            <div className="w-32 h-1.5 bg-purple-900/50 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-gradient-to-r from-purple-400 to-pink-400 rounded-full transition-all duration-300"
+            <div className="w-32 h-1.5 bg-accent-7/10 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-accent rounded-full transition-all duration-300"
                 style={{ width: `${((cameraPos.zoom - 0.5) / 1.5) * 100}%` }}
               />
             </div>
-            <span className="text-white text-xs font-bold">
+            <span className="text-black text-xs font-bold">
               {Math.round(cameraPos.zoom * 100)}%
             </span>
           </div>

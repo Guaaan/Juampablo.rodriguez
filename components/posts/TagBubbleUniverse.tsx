@@ -32,12 +32,21 @@ const TagBubbleUniverse: React.FC<TagBubbleUniverseProps> = ({ posts, onPostClic
   const animationRef = useRef<number>();
 
   // Calcular tags y frecuencias
-  const tagFrequency = posts.reduce((acc, post) => {
+  const rawTagFrequency = posts.reduce((acc, post) => {
     post.tags?.forEach(tag => {
       acc.set(tag, (acc.get(tag) || 0) + 1);
     });
     return acc;
   }, new Map<string, number>());
+
+  // Si ningún post tiene tags, mostramos una burbuja por post en su lugar
+  const hasTags = rawTagFrequency.size > 0;
+  const tagFrequency = hasTags
+    ? rawTagFrequency
+    : new Map(posts.map(post => [post.slug, 1] as [string, number]));
+
+  const getBubbleLabel = (key: string) =>
+    hasTags ? key : posts.find(p => p.slug === key)?.title ?? key;
 
   const maxCount = Math.max(...Array.from(tagFrequency.values()));
 
@@ -100,27 +109,30 @@ const TagBubbleUniverse: React.FC<TagBubbleUniverseProps> = ({ posts, onPostClic
   }, [selectedTag]);
 
   const handleTagClick = (tag: string) => {
+    if (!hasTags) {
+      onPostClick?.(tag);
+      return;
+    }
     setSelectedTag(selectedTag === tag ? null : tag);
   };
 
-  const filteredPosts = selectedTag 
-    ? posts.filter(p => p.tags?.includes(selectedTag))
+  const filteredPosts = selectedTag
+    ? (hasTags ? posts.filter(p => p.tags?.includes(selectedTag)) : posts.filter(p => p.slug === selectedTag))
     : [];
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 overflow-hidden">
+    <div className="relative w-full h-screen bg-white overflow-hidden">
       <div ref={containerRef} className="absolute inset-0">
-        {/* Estrellas de fondo */}
+        {/* Puntos de fondo, sutiles */}
         <div className="absolute inset-0">
           {Array.from({ length: 50 }).map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+              className="absolute w-1 h-1 bg-accent-7 rounded-full"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                opacity: Math.random() * 0.5 + 0.2
+                opacity: Math.random() * 0.15 + 0.05
               }}
             />
           ))}
@@ -149,12 +161,12 @@ const TagBubbleUniverse: React.FC<TagBubbleUniverseProps> = ({ posts, onPostClic
               onClick={() => handleTagClick(tag)}
             >
               <div
-                className={`relative flex items-center justify-center rounded-full backdrop-blur-md border-2 transition-all duration-300 ${
+                className={`relative flex items-center justify-center rounded-full bg-white border-2 transition-all duration-300 ${
                   isSelected
-                    ? 'bg-purple-500/40 border-purple-300 shadow-[0_0_40px_rgba(168,85,247,0.6)]'
+                    ? 'border-primary shadow-md'
                     : isHovered
-                    ? 'bg-blue-500/30 border-blue-300 shadow-[0_0_30px_rgba(59,130,246,0.5)]'
-                    : 'bg-white/10 border-white/30 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
+                    ? 'border-accent shadow-sm'
+                    : 'border-accent-7/20 shadow-sm'
                 }`}
                 style={{
                   width: bubble.radius * 2,
@@ -162,12 +174,14 @@ const TagBubbleUniverse: React.FC<TagBubbleUniverseProps> = ({ posts, onPostClic
                 }}
               >
                 <div className="text-center px-2">
-                  <div className="font-bold text-white text-sm mb-1">
-                    #{tag}
+                  <div className={`font-bold text-sm mb-1 line-clamp-2 ${isSelected ? 'text-primary' : isHovered ? 'text-accent' : 'text-black'}`}>
+                    {hasTags ? `#${getBubbleLabel(tag)}` : getBubbleLabel(tag)}
                   </div>
-                  <div className="text-xs text-white/70">
-                    {count} post{count !== 1 ? 's' : ''}
-                  </div>
+                  {hasTags && (
+                    <div className="text-xs text-accent-7/60">
+                      {count} post{count !== 1 ? 's' : ''}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -193,12 +207,12 @@ const TagBubbleUniverse: React.FC<TagBubbleUniverseProps> = ({ posts, onPostClic
                   }}
                   onClick={() => onPostClick?.(post.slug)}
                 >
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 p-1 shadow-[0_0_30px_rgba(168,85,247,0.5)] group-hover:shadow-[0_0_50px_rgba(168,85,247,0.8)] transition-all duration-300">
-                    <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                  <div className="w-32 h-32 rounded-full bg-white border-2 border-primary p-1 shadow-md group-hover:shadow-lg transition-all duration-300">
+                    <div className="w-full h-full rounded-full bg-accent-1 flex items-center justify-center overflow-hidden">
                       {post.coverImage ? (
-                        <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+                        <img src={post.coverImage} alt={post.title} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
                       ) : (
-                        <div className="text-white text-xs font-bold text-center px-3 line-clamp-3">
+                        <div className="text-black text-xs font-bold text-center px-3 line-clamp-3">
                           {post.title}
                         </div>
                       )}
@@ -211,11 +225,11 @@ const TagBubbleUniverse: React.FC<TagBubbleUniverseProps> = ({ posts, onPostClic
         )}
 
         {/* Instrucciones */}
-        <div className="absolute top-8 left-8 text-white/60 text-sm backdrop-blur-sm bg-black/20 px-4 py-2 rounded-lg">
+        <div className="absolute top-8 left-8 text-accent-7/70 text-sm bg-white border border-accent-7/10 shadow-sm px-4 py-2 rounded-lg">
           {selectedTag ? (
             <p>Click en la burbuja central o en un post para interactuar</p>
           ) : (
-            <p>Click en las burbujas para explorar posts por tag</p>
+            <p>{hasTags ? 'Click en las burbujas para explorar posts por tag' : 'Click en una burbuja para abrir el post'}</p>
           )}
         </div>
       </div>

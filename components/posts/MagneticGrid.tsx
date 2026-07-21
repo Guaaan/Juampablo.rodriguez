@@ -26,12 +26,12 @@ interface CardState {
   rotation: number;
 }
 
-const MagneticGrid: React.FC<MagneticGridProps> = ({ 
-  posts, 
+const MagneticGrid: React.FC<MagneticGridProps> = ({
+  posts,
   columns = 3,
   magneticStrength = 80,
   elasticity = 0.15,
-  onPostClick 
+  onPostClick
 }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -65,7 +65,7 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
     const animate = () => {
       setCardStates(prev => {
         const next = new Map(prev);
-        
+
         cardRefs.current.forEach((cardEl, slug) => {
           const rect = cardEl.getBoundingClientRect();
           const containerRect = containerRef.current?.getBoundingClientRect();
@@ -117,22 +117,22 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8 overflow-hidden"
+      className="relative min-h-screen bg-white p-8 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Efecto de onda en el cursor */}
-      <div 
-        className="fixed w-32 h-32 rounded-full border-2 border-purple-400/30 pointer-events-none transition-all duration-300"
+      <div
+        className="fixed w-32 h-32 rounded-full border-2 border-accent-7/10 pointer-events-none transition-all duration-300"
         style={{
           left: mousePos.x - 64,
           top: mousePos.y - 64,
           transform: hoveredCard ? 'scale(1.5)' : 'scale(1)'
         }}
       />
-      <div 
-        className="fixed w-64 h-64 rounded-full border border-purple-400/10 pointer-events-none"
+      <div
+        className="fixed w-64 h-64 rounded-full border border-accent-7/5 pointer-events-none"
         style={{
           left: mousePos.x - 128,
           top: mousePos.y - 128
@@ -140,10 +140,10 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
       />
 
       {/* Grid de posts */}
-      <div 
+      <div
         className="grid gap-6 mx-auto max-w-7xl"
-        style={{ 
-          gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` 
+        style={{
+          gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`
         }}
       >
         {posts.map((post) => {
@@ -165,25 +165,22 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
               onMouseLeave={() => setHoveredCard(null)}
               onClick={() => handleCardClick(post.slug)}
             >
-              <div className={`relative h-96 rounded-2xl overflow-hidden transition-all duration-300 ${
-                isHovered 
-                  ? 'shadow-[0_0_60px_rgba(168,85,247,0.6)] scale-110 z-50' 
-                  : 'shadow-[0_0_30px_rgba(0,0,0,0.3)]'
+              <div className={`relative h-96 rounded-2xl overflow-hidden bg-accent-1 transition-all duration-300 ${
+                isHovered
+                  ? 'shadow-lg scale-110 z-50 border-2 border-accent'
+                  : 'shadow-sm border border-accent-7/10'
               }`}>
-                {/* Background con efecto glassmorphism */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md" />
-                
                 {/* Cover Image */}
                 {post.coverImage && (
                   <div className="absolute inset-0">
-                    <img 
-                      src={post.coverImage} 
+                    <img
+                      src={post.coverImage}
                       alt={post.title}
                       className={`w-full h-full object-cover transition-all duration-500 ${
-                        isHovered ? 'scale-110 blur-sm opacity-40' : 'opacity-30'
+                        isHovered ? 'scale-110' : ''
                       }`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                   </div>
                 )}
 
@@ -191,11 +188,11 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
                 <div className="relative h-full flex flex-col justify-end p-6">
                   {/* Fecha flotante */}
                   <div className="absolute top-6 right-6">
-                    <div className="bg-purple-500/80 backdrop-blur-sm px-4 py-2 rounded-full">
-                      <span className="text-white text-sm font-bold">
-                        {new Date(post.date).toLocaleDateString('es-ES', { 
-                          month: 'short', 
-                          day: 'numeric' 
+                    <div className="bg-white/90 px-4 py-2 rounded-full shadow-sm">
+                      <span className="text-black text-sm font-bold">
+                        {new Date(post.date).toLocaleDateString('es-ES', {
+                          month: 'short',
+                          day: 'numeric'
                         })}
                       </span>
                     </div>
@@ -207,9 +204,9 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
                       isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                     }`}>
                       {post.tags.slice(0, 3).map(tag => (
-                        <span 
+                        <span
                           key={tag}
-                          className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-semibold border border-white/30"
+                          className="px-3 py-1 bg-white/90 rounded-full text-black text-xs font-semibold"
                         >
                           #{tag}
                         </span>
@@ -226,30 +223,23 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
 
                   {/* Excerpt */}
                   <p className={`text-white/80 transition-all duration-300 ${
-                    isHovered 
-                      ? 'opacity-100 max-h-32 text-base' 
+                    isHovered
+                      ? 'opacity-100 max-h-32 text-base'
                       : 'opacity-0 max-h-0 text-sm'
                   } overflow-hidden`}>
                     {post.excerpt}
                   </p>
 
                   {/* Indicador de interacción */}
-                  <div className={`mt-4 flex items-center gap-2 text-purple-300 transition-all duration-300 ${
+                  <div className={`mt-4 flex items-center gap-2 text-white transition-all duration-300 ${
                     isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
                   }`}>
                     <span className="text-sm font-semibold">Leer más</span>
-                    <svg className="w-5 h-5 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
                   </div>
                 </div>
-
-                {/* Borde animado */}
-                <div className={`absolute inset-0 rounded-2xl transition-all duration-300 ${
-                  isHovered 
-                    ? 'border-2 border-purple-400/50' 
-                    : 'border border-white/10'
-                }`} />
               </div>
             </div>
           );
@@ -258,8 +248,8 @@ const MagneticGrid: React.FC<MagneticGridProps> = ({
 
       {/* Título e instrucciones */}
       <div className="fixed top-8 left-8 z-50">
-        <h2 className="text-white text-4xl font-black mb-2">Magnetic Grid</h2>
-        <p className="text-white/60 text-sm">Mueve el cursor para interactuar</p>
+        <h2 className="text-black text-4xl font-black mb-2">Magnetic Grid</h2>
+        <p className="text-accent-7/60 text-sm">Mueve el cursor para interactuar</p>
       </div>
     </div>
   );

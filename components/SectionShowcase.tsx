@@ -36,6 +36,9 @@ const SectionShowcase: React.FC<Props> = ({
 }) => {
   const titleColor = titleColorClass ?? (variant === 'parallax' ? 'text-white' : 'text-slate-900')
   const palette = !hasPhoto ? getAnalogousColors(color) : null
+  // Sin foto de fondo, la descripción es negra; con foto de fondo, blanca (para
+  // contrastar contra la imagen, que suele ir oscurecida con overlay/filtro).
+  const autoTextColor = hasPhoto ? 'text-white' : 'text-slate-900'
 
   if (variant === 'parallax') {
     const bgStyle = hasPhoto && imageSrc
@@ -55,7 +58,7 @@ const SectionShowcase: React.FC<Props> = ({
         <div className={`relative ${overlayClass ?? (hasPhoto ? 'bg-black/40' : '')}`}>
           <div className="max-w-7xl mx-auto px-6 py-20 md:py-32">
             <h2 className={`${titleColor} text-4xl md:text-6xl font-extrabold mb-4`}>{title}</h2>
-            <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? 'text-white'}`}>{description}</p>
+            <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? autoTextColor}`}>{description}</p>
           </div>
         </div>
       </section>
@@ -74,7 +77,7 @@ const SectionShowcase: React.FC<Props> = ({
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className={reverse ? 'order-2' : ''}>
               <h2 className={`${titleColor} text-4xl md:text-5xl font-extrabold mb-4`}>{title}</h2>
-              <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? 'text-slate-900'}`}>{description}</p>
+              <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? autoTextColor}`}>{description}</p>
             </div>
             <div className="transform-style-3d">
               {!hasPhoto && palette ? (

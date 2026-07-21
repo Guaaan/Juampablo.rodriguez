@@ -19,12 +19,12 @@ interface WaveformTimelineProps {
   onPostClick?: (slug: string) => void;
 }
 
-const WaveformTimeline: React.FC<WaveformTimelineProps> = ({ 
-  posts, 
-  waveColor = '#00ff88',
-  glowIntensity = 0.8,
+const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
+  posts,
+  waveColor = '#00e536',
+  glowIntensity = 0.4,
   animate = true,
-  onPostClick 
+  onPostClick
 }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [playingPost, setPlayingPost] = useState<string | null>(null);
@@ -35,7 +35,7 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
   const waveformRef = useRef<HTMLDivElement>(null);
 
   // Ordenar posts por fecha
-  const sortedPosts = [...posts].sort((a, b) => 
+  const sortedPosts = [...posts].sort((a, b) =>
     new Date(a.date).getTime() - new Date(b.date).getTime()
   );
 
@@ -50,7 +50,7 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
   // Animación de onda
   useEffect(() => {
     if (!animate) return;
-    
+
     const interval = setInterval(() => {
       setAnimationPhase(prev => (prev + 0.1) % (Math.PI * 2));
     }, 50);
@@ -62,8 +62,8 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
   const getBarHeight = (post: Post, index: number) => {
     const baseHeight = 40;
     const tagModifier = (post.tags?.length || 0) * 15;
-    const waveModifier = animate 
-      ? Math.sin(animationPhase + index * 0.3) * 10 
+    const waveModifier = animate
+      ? Math.sin(animationPhase + index * 0.3) * 10
       : 0;
     return baseHeight + tagModifier + waveModifier;
   };
@@ -79,8 +79,8 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
   };
 
   const toggleTagFilter = (tag: string) => {
-    setFilterTags(prev => 
-      prev.includes(tag) 
+    setFilterTags(prev =>
+      prev.includes(tag)
         ? prev.filter(t => t !== tag)
         : [...prev, tag]
     );
@@ -91,26 +91,26 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
   };
 
   return (
-    <div className="relative w-full h-screen bg-black overflow-hidden">
+    <div className="relative w-full h-screen bg-white overflow-hidden">
       {/* Grid de fondo estilo audio editor */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-100">
         {Array.from({ length: 20 }).map((_, i) => (
-          <div 
+          <div
             key={i}
-            className="absolute w-full border-t border-green-500"
+            className="absolute w-full border-t border-accent-7/5"
             style={{ top: `${(i + 1) * 5}%` }}
           />
         ))}
       </div>
 
       {/* Header con controles */}
-      <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-black via-black/80 to-transparent p-6">
+      <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-white via-white/90 to-transparent p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-green-400 text-3xl font-black mb-1 tracking-wider" style={{ fontFamily: 'monospace' }}>
+            <h2 className="text-black text-3xl font-black mb-1 tracking-wider" style={{ fontFamily: 'monospace' }}>
               WAVEFORM TIMELINE
             </h2>
-            <p className="text-green-500/70 text-sm" style={{ fontFamily: 'monospace' }}>
+            <p className="text-accent-7/60 text-sm" style={{ fontFamily: 'monospace' }}>
               {filteredPosts.length} TRACKS LOADED • {playingPost ? '▶ PLAYING' : '⏸ PAUSED'}
             </p>
           </div>
@@ -120,11 +120,12 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
             {Array.from({ length: 20 }).map((_, i) => (
               <div
                 key={i}
-                className={`w-1.5 h-16 rounded-full transition-all duration-100 ${
-                  playingPost && i < (Math.sin(animationPhase * 4) + 1) * 10
-                    ? 'bg-green-400 shadow-[0_0_10px_#00ff88]'
-                    : 'bg-green-900/30'
-                }`}
+                className="w-1.5 h-16 rounded-full transition-all duration-100"
+                style={{
+                  backgroundColor: playingPost && i < (Math.sin(animationPhase * 4) + 1) * 10
+                    ? waveColor
+                    : 'rgba(51,51,51,0.1)'
+                }}
               />
             ))}
           </div>
@@ -135,16 +136,17 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
           {allTags.map(tag => {
             const isActive = filterTags.includes(tag);
             const count = posts.filter(p => p.tags?.includes(tag)).length;
-            
+
             return (
               <button
                 key={tag}
                 onClick={() => toggleTagFilter(tag)}
-                className={`px-4 py-2 rounded-lg font-mono text-xs font-bold transition-all duration-300 ${
+                className="px-4 py-2 rounded-lg font-mono text-xs font-bold transition-all duration-300 border"
+                style={
                   isActive
-                    ? 'bg-green-400 text-black shadow-[0_0_20px_#00ff88]'
-                    : 'bg-green-900/20 text-green-400 border border-green-400/30 hover:bg-green-900/40'
-                }`}
+                    ? { backgroundColor: waveColor, color: '#ffffff', borderColor: waveColor }
+                    : { backgroundColor: 'transparent', color: '#333333', borderColor: 'rgba(51,51,51,0.15)' }
+                }
               >
                 {tag.toUpperCase()} [{count}]
               </button>
@@ -154,22 +156,22 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
       </div>
 
       {/* Waveform scrollable */}
-      <div 
+      <div
         ref={containerRef}
-        className="absolute top-1/2 left-0 right-0 -translate-y-1/2 overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-green-400 scrollbar-track-green-900/20"
+        className="absolute top-1/2 left-0 right-0 -translate-y-1/2 overflow-x-auto overflow-y-hidden"
         onScroll={handleScroll}
         style={{ height: '60vh' }}
       >
-        <div 
+        <div
           ref={waveformRef}
           className="relative flex items-center gap-2 px-8"
-          style={{ 
+          style={{
             minWidth: `${filteredPosts.length * 80}px`,
             height: '100%'
           }}
         >
           {/* Línea central */}
-          <div className="absolute left-0 right-0 h-0.5 bg-green-400/20" style={{ top: '50%' }} />
+          <div className="absolute left-0 right-0 h-0.5 bg-accent-7/10" style={{ top: '50%' }} />
 
           {/* Barras de waveform */}
           {filteredPosts.map((post, index) => {
@@ -187,62 +189,50 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
                 onClick={() => handlePostClick(post)}
               >
                 {/* Barra principal */}
-                <div 
+                <div
                   className="relative transition-all duration-300"
                   style={{
                     width: '60px',
                     height: `${barHeight * scaleFactor}px`,
                   }}
                 >
-                  <div 
+                  <div
                     className="absolute inset-0 rounded-t-lg transition-all duration-300"
                     style={{
-                      background: `linear-gradient(to top, ${waveColor}, ${waveColor}88)`,
-                      boxShadow: isPlaying || isHovered 
-                        ? `0 0 ${20 * glowIntensity}px ${waveColor}, 0 0 ${40 * glowIntensity}px ${waveColor}66`
-                        : `0 0 ${10 * glowIntensity}px ${waveColor}44`
+                      background: `linear-gradient(to top, ${waveColor}, ${waveColor}55)`,
+                      boxShadow: isPlaying || isHovered
+                        ? `0 4px 14px ${waveColor}55`
+                        : 'none'
                     }}
                   />
 
                   {/* Onda expansiva al reproducir */}
                   {isPlaying && (
-                    <>
-                      <div 
-                        className="absolute inset-0 rounded-t-lg animate-ping"
-                        style={{
-                          background: waveColor,
-                          opacity: 0.4
-                        }}
-                      />
-                      <div 
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full animate-pulse"
-                        style={{
-                          background: `radial-gradient(circle, ${waveColor}88, transparent)`,
-                          transform: 'scale(3)'
-                        }}
-                      />
-                    </>
+                    <div
+                      className="absolute inset-0 rounded-t-lg animate-ping"
+                      style={{
+                        background: waveColor,
+                        opacity: 0.25
+                      }}
+                    />
                   )}
                 </div>
 
                 {/* Info card al hover */}
                 {isHovered && (
-                  <div 
-                    className="absolute bottom-full mb-4 w-72 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+                  <div
+                    className="absolute bottom-full mb-4 w-72 transition-all duration-300"
                     style={{ zIndex: 100 }}
                   >
-                    <div 
-                      className="bg-black/95 backdrop-blur-xl rounded-2xl p-5 border-2 shadow-2xl"
-                      style={{
-                        borderColor: waveColor,
-                        boxShadow: `0 0 30px ${waveColor}66`
-                      }}
+                    <div
+                      className="bg-white rounded-2xl p-5 border-2 shadow-lg"
+                      style={{ borderColor: waveColor }}
                     >
                       {/* Cover */}
                       {post.coverImage && (
                         <div className="w-full h-40 rounded-lg overflow-hidden mb-4">
-                          <img 
-                            src={post.coverImage} 
+                          <img
+                            src={post.coverImage}
                             alt={post.title}
                             className="w-full h-full object-cover"
                           />
@@ -250,11 +240,11 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
                       )}
 
                       {/* Timestamp */}
-                      <div 
+                      <div
                         className="font-mono text-xs font-bold mb-2"
                         style={{ color: waveColor }}
                       >
-                        {new Date(post.date).toLocaleDateString('en-US', { 
+                        {new Date(post.date).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: '2-digit',
                           day: '2-digit'
@@ -262,13 +252,13 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
                       </div>
 
                       {/* Título */}
-                      <h3 className="text-white text-lg font-black mb-2 leading-tight">
+                      <h3 className="text-black text-lg font-black mb-2 leading-tight">
                         {post.title}
                       </h3>
 
                       {/* Excerpt */}
                       {post.excerpt && (
-                        <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                        <p className="text-accent-7/60 text-sm mb-3 line-clamp-2">
                           {post.excerpt}
                         </p>
                       )}
@@ -277,11 +267,11 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
                       {post.tags && post.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1">
                           {post.tags.map(tag => (
-                            <span 
+                            <span
                               key={tag}
                               className="px-2 py-1 font-mono text-xs font-bold rounded"
                               style={{
-                                backgroundColor: `${waveColor}22`,
+                                backgroundColor: `${waveColor}18`,
                                 color: waveColor,
                                 border: `1px solid ${waveColor}44`
                               }}
@@ -293,11 +283,11 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
                       )}
 
                       {/* Metadata */}
-                      <div className="mt-4 pt-4 border-t border-green-400/20 flex justify-between items-center">
-                        <span className="text-green-400/70 text-xs font-mono">
+                      <div className="mt-4 pt-4 border-t border-accent-7/10 flex justify-between items-center">
+                        <span className="text-accent-7/50 text-xs font-mono">
                           TRACK {index + 1} / {filteredPosts.length}
                         </span>
-                        <span 
+                        <span
                           className="text-xs font-mono font-bold"
                           style={{ color: waveColor }}
                         >
@@ -309,7 +299,7 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
                 )}
 
                 {/* Fecha debajo */}
-                <div className="mt-2 text-green-400/50 text-xs font-mono whitespace-nowrap">
+                <div className="mt-2 text-accent-7/40 text-xs font-mono whitespace-nowrap">
                   {new Date(post.date).toLocaleDateString('en-US', { month: 'short', year: '2-digit' }).toUpperCase()}
                 </div>
               </div>
@@ -320,22 +310,23 @@ const WaveformTimeline: React.FC<WaveformTimelineProps> = ({
 
       {/* Scrollbar indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-64">
-        <div className="bg-green-900/20 h-2 rounded-full overflow-hidden backdrop-blur-sm border border-green-400/30">
-          <div 
-            className="h-full bg-green-400 rounded-full transition-all duration-300 shadow-[0_0_10px_#00ff88]"
-            style={{ 
-              width: `${((scrollPosition / (waveformRef.current?.scrollWidth || 1)) * 100)}%` 
+        <div className="bg-accent-7/10 h-2 rounded-full overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-300"
+            style={{
+              width: `${((scrollPosition / (waveformRef.current?.scrollWidth || 1)) * 100)}%`,
+              backgroundColor: waveColor
             }}
           />
         </div>
-        <p className="text-center text-green-400/70 text-xs font-mono mt-2">
+        <p className="text-center text-accent-7/60 text-xs font-mono mt-2">
           TIMELINE POSITION
         </p>
       </div>
 
       {/* Instrucciones */}
-      <div className="absolute bottom-8 right-8 bg-black/80 backdrop-blur-md px-4 py-3 rounded-xl border border-green-400/30">
-        <div className="space-y-1 text-green-400 text-xs font-mono">
+      <div className="absolute bottom-8 right-8 bg-white border border-accent-7/10 shadow-sm px-4 py-3 rounded-xl">
+        <div className="space-y-1 text-accent-7/70 text-xs font-mono">
           <p>↔ Scroll horizontal</p>
           <p>🎵 Click para reproducir</p>
           <p>🎚️ Filtros en el header</p>

@@ -1,38 +1,39 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 
 type Shape =
   | { type: 'circle'; cx: number; cy: number; r: number; opacity: number; colorIndex: 0 | 1 | 2; depth?: number }
-  | { type: 'rect'; x: number; y: number; size: number; rotate: number; opacity: number; colorIndex: 0 | 1 | 2; depth?: number }
-  | { type: 'triangle'; points: string; opacity: number; colorIndex: 0 | 1 | 2; depth?: number }
+  | { type: 'square'; cx: number; cy: number; size: number; opacity: number; colorIndex: 0 | 1 | 2; depth?: number }
+  | { type: 'rect'; cx: number; cy: number; width: number; height: number; opacity: number; colorIndex: 0 | 1 | 2; depth?: number }
+  | { type: 'triangle'; cx: number; cy: number; r: number; rotation: number; opacity: number; colorIndex: 0 | 1 | 2; depth?: number }
 
 // Versión normalizada (0-1) para mejor escalabilidad
 const LAYOUTS: Shape[][] = [
   [
-    { type: 'circle', cx: 0.175, cy: 0.767, r: 0.325, opacity: 0.9, colorIndex: 0, depth: 0.2 },
-    { type: 'rect', x: 0.475, y: 0.133, size: 0.375, rotate: 45, opacity: 0.8, colorIndex: 1, depth: 0.5 },
-    { type: 'triangle', points: '0.65,1 1,0.5 1,1', opacity: 0.85, colorIndex: 2, depth: 0.8 },
+    { type: 'circle', cx: 0.175, cy: 0.767, r: 0.2, opacity: 0.9, colorIndex: 0, depth: 0.2 },
+    { type: 'rect', cx: 0.6625, cy: 0.32, width: 0.3, height: 0.2, opacity: 0.8, colorIndex: 1, depth: 0.5 },
+    { type: 'triangle', cx: 0.85, cy: 0.83, r: 0.2, rotation: 160, opacity: 0.85, colorIndex: 2, depth: 0.8 },
   ],
   [
-    { type: 'triangle', points: '0,1 0.45,0.2 0.8,1', opacity: 0.85, colorIndex: 1, depth: 0.3 },
-    { type: 'circle', cx: 0.825, cy: 0.233, r: 0.25, opacity: 0.85, colorIndex: 2, depth: 0.7 },
-    { type: 'rect', x: 0.05, y: 0.067, size: 0.275, rotate: 20, opacity: 0.75, colorIndex: 0, depth: 0.4 },
+    { type: 'triangle', cx: 0.42, cy: 0.65, r: 0.28, rotation: 0, opacity: 0.85, colorIndex: 1, depth: 0.3 },
+    { type: 'circle', cx: 0.825, cy: 0.233, r: 0.15, opacity: 0.85, colorIndex: 2, depth: 0.7 },
+    { type: 'square', cx: 0.19, cy: 0.2, size: 0.22, opacity: 0.75, colorIndex: 0, depth: 0.4 },
   ],
   [
-    { type: 'rect', x: 0.1, y: 0.3, size: 0.475, rotate: 12, opacity: 0.85, colorIndex: 2, depth: 0.6 },
-    { type: 'circle', cx: 0.75, cy: 0.733, r: 0.3, opacity: 0.8, colorIndex: 0, depth: 0.2 },
-    { type: 'triangle', points: '0.375,0 0.65,0.4 0.1,0.4', opacity: 0.85, colorIndex: 1, depth: 0.9 },
+    { type: 'rect', cx: 0.34, cy: 0.54, width: 0.38, height: 0.24, opacity: 0.85, colorIndex: 2, depth: 0.6 },
+    { type: 'circle', cx: 0.75, cy: 0.733, r: 0.18, opacity: 0.8, colorIndex: 0, depth: 0.2 },
+    { type: 'triangle', cx: 0.35, cy: 0.15, r: 0.22, rotation: 30, opacity: 0.85, colorIndex: 1, depth: 0.9 },
   ],
   [
-    { type: 'circle', cx: 0.5, cy: 0.5, r: 0.28, opacity: 0.75, colorIndex: 1, depth: 0.5 },
-    { type: 'rect', x: 0.1, y: 0.1, size: 0.2, rotate: 25, opacity: 0.8, colorIndex: 2, depth: 0.3 },
-    { type: 'rect', x: 0.7, y: 0.7, size: 0.25, rotate: -15, opacity: 0.7, colorIndex: 0, depth: 0.8 },
-    { type: 'triangle', points: '0.15,0.15 0.35,0.05 0.25,0.35', opacity: 0.8, colorIndex: 2, depth: 0.4 },
+    { type: 'circle', cx: 0.5, cy: 0.5, r: 0.16, opacity: 0.75, colorIndex: 1, depth: 0.5 },
+    { type: 'square', cx: 0.2, cy: 0.2, size: 0.16, opacity: 0.8, colorIndex: 2, depth: 0.3 },
+    { type: 'rect', cx: 0.8, cy: 0.8, width: 0.22, height: 0.16, opacity: 0.7, colorIndex: 0, depth: 0.8 },
+    { type: 'triangle', cx: 0.22, cy: 0.78, r: 0.14, rotation: 210, opacity: 0.8, colorIndex: 2, depth: 0.4 },
   ],
   [
-    { type: 'triangle', points: '0.5,0 1,0.866 0,0.866', opacity: 0.9, colorIndex: 0, depth: 0.2 },
-    { type: 'circle', cx: 0.2, cy: 0.3, r: 0.15, opacity: 0.75, colorIndex: 1, depth: 0.7 },
-    { type: 'circle', cx: 0.8, cy: 0.4, r: 0.12, opacity: 0.7, colorIndex: 2, depth: 0.6 },
-    { type: 'rect', x: 0.35, y: 0.65, size: 0.3, rotate: 45, opacity: 0.8, colorIndex: 1, depth: 0.9 },
+    { type: 'triangle', cx: 0.5, cy: 0.58, r: 0.32, rotation: 0, opacity: 0.9, colorIndex: 0, depth: 0.2 },
+    { type: 'circle', cx: 0.2, cy: 0.3, r: 0.11, opacity: 0.75, colorIndex: 1, depth: 0.7 },
+    { type: 'circle', cx: 0.8, cy: 0.4, r: 0.09, opacity: 0.7, colorIndex: 2, depth: 0.6 },
+    { type: 'square', cx: 0.5, cy: 0.8, size: 0.18, opacity: 0.8, colorIndex: 1, depth: 0.9 },
   ],
 ]
 
@@ -66,61 +67,114 @@ class SeededRandom {
   }
 }
 
-// Generar figuras aleatorias
+type Placed = { cx: number; cy: number; footprint: number }
+type Candidate = { cx: number; cy: number; footprint: number; shape: Shape }
+
+const MAX_PLACEMENT_ATTEMPTS = 40
+const MIN_GAP_FACTOR = 0.85
+
+function distance(ax: number, ay: number, bx: number, by: number): number {
+  return Math.hypot(ax - bx, ay - by)
+}
+
+// Qué tan "libre" queda una figura candidata respecto a las ya colocadas
+// (valor >= 0 significa que no se solapa)
+function clearance(candidate: { cx: number; cy: number; footprint: number }, placed: Placed[]): number {
+  if (placed.length === 0) return Infinity
+  return Math.min(
+    ...placed.map(
+      (p) => distance(candidate.cx, candidate.cy, p.cx, p.cy) - (candidate.footprint + p.footprint) * MIN_GAP_FACTOR
+    )
+  )
+}
+
+function buildCandidate(
+  type: 'circle' | 'rect' | 'triangle' | 'square',
+  rng: SeededRandom,
+  colorIndex: 0 | 1 | 2,
+  depth: number,
+  opacity: number
+): Candidate {
+  if (type === 'circle') {
+    const r = rng.range(0.08, 0.2)
+    const cx = rng.range(r, 1 - r)
+    const cy = rng.range(r, 1 - r)
+    return { cx, cy, footprint: r, shape: { type: 'circle', cx, cy, r, opacity, colorIndex, depth } }
+  }
+
+  if (type === 'square') {
+    const size = rng.range(0.15, 0.3)
+    const half = size / 2
+    const cx = rng.range(half, 1 - half)
+    const cy = rng.range(half, 1 - half)
+    return { cx, cy, footprint: half * Math.SQRT2, shape: { type: 'square', cx, cy, size, opacity, colorIndex, depth } }
+  }
+
+  if (type === 'rect') {
+    // Ancho y alto varían de forma independiente: son dos lados distintos, no un cuadrado
+    const width = rng.range(0.15, 0.32)
+    const height = rng.range(0.15, 0.32)
+    const cx = rng.range(width / 2, 1 - width / 2)
+    const cy = rng.range(height / 2, 1 - height / 2)
+    return {
+      cx,
+      cy,
+      footprint: Math.hypot(width, height) / 2,
+      shape: { type: 'rect', cx, cy, width, height, opacity, colorIndex, depth },
+    }
+  }
+
+  // Triángulo equilátero: los 3 lados miden siempre lo mismo
+  const r = rng.range(0.14, 0.3)
+  const cx = rng.range(r, 1 - r)
+  const cy = rng.range(r, 1 - r)
+  const rotation = rng.range(0, 360)
+  return { cx, cy, footprint: r, shape: { type: 'triangle', cx, cy, r, rotation, opacity, colorIndex, depth } }
+}
+
+// Genera figuras aleatorias evitando que se amontonen siempre en el mismo lugar
 function generateRandomShapes(seedStr: string): Shape[] {
   const rng = new SeededRandom(seedStr + Math.random())
   const numShapes = Math.floor(rng.range(4, 7))
+  const shapeTypes = ['circle', 'rect', 'triangle', 'square'] as const
   const shapes: Shape[] = []
-  const shapeTypes = ['circle', 'rect', 'triangle'] as const
+  const placed: Placed[] = []
 
   for (let i = 0; i < numShapes; i++) {
     const type = rng.choice(shapeTypes)
     const colorIndex = Math.floor(rng.next() * 3) as 0 | 1 | 2
     const depth = rng.range(0.1, 1)
+    const opacity = rng.range(0.6, 0.95)
 
-    if (type === 'circle') {
-      shapes.push({
-        type: 'circle',
-        cx: rng.range(0.1, 0.9),
-        cy: rng.range(0.1, 0.9),
-        r: rng.range(0.08, 0.35),
-        opacity: rng.range(0.6, 0.95),
-        colorIndex,
-        depth,
-      })
-    } else if (type === 'rect') {
-      const size = rng.range(0.15, 0.4)
-      const x = rng.range(0, 1 - size)
-      const y = rng.range(0, 1 - size)
-      shapes.push({
-        type: 'rect',
-        x,
-        y,
-        size,
-        rotate: rng.range(0, 360),
-        opacity: rng.range(0.6, 0.95),
-        colorIndex,
-        depth,
-      })
-    } else {
-      // Triangle
-      const x1 = rng.range(0.1, 0.9)
-      const y1 = rng.range(0.1, 0.9)
-      const x2 = rng.range(0.1, 0.9)
-      const y2 = rng.range(0.1, 0.9)
-      const x3 = rng.range(0.1, 0.9)
-      const y3 = rng.range(0.1, 0.9)
-      shapes.push({
-        type: 'triangle',
-        points: `${x1},${y1} ${x2},${y2} ${x3},${y3}`,
-        opacity: rng.range(0.6, 0.95),
-        colorIndex,
-        depth,
-      })
+    let best: Candidate | null = null
+    let bestClearance = -Infinity
+
+    for (let attempt = 0; attempt < MAX_PLACEMENT_ATTEMPTS; attempt++) {
+      const candidate = buildCandidate(type, rng, colorIndex, depth, opacity)
+      const c = clearance(candidate, placed)
+      if (c > bestClearance) {
+        bestClearance = c
+        best = candidate
+      }
+      if (c >= 0) break
+    }
+
+    if (best) {
+      placed.push({ cx: best.cx, cy: best.cy, footprint: best.footprint })
+      shapes.push(best.shape)
     }
   }
 
   return shapes
+}
+
+function triangleVertices(cx: number, cy: number, r: number, rotation: number): string {
+  return [0, 1, 2]
+    .map((k) => {
+      const angle = ((rotation - 90 + k * 120) * Math.PI) / 180
+      return `${cx + r * Math.cos(angle)},${cy + r * Math.sin(angle)}`
+    })
+    .join(' ')
 }
 
 type Props = {
@@ -137,9 +191,9 @@ type Props = {
   randomize?: boolean
 }
 
-const GeometricPattern: React.FC<Props> = ({ 
-  colors, 
-  seed = '', 
+const GeometricPattern: React.FC<Props> = ({
+  colors,
+  seed = '',
   className = '',
   enableParallax = true,
   parallaxIntensity = 0.15,
@@ -149,12 +203,14 @@ const GeometricPattern: React.FC<Props> = ({
   const [randomSeed] = useState(() => Math.random().toString())
   const [isMounted, setIsMounted] = useState(false)
   const finalSeed = seed || randomSeed
-  const layout = randomize 
-    ? generateRandomShapes(finalSeed)
-    : LAYOUTS[hashString(finalSeed) % LAYOUTS.length]
-  
-  const [offset, setOffset] = useState({ x: 0, y: 0 })
-  const containerRef = useRef<HTMLDivElement>(null)
+  // Las figuras se generan una única vez para la vida del componente:
+  // regenerarlas en cada render (p. ej. al mover el mouse) provocaba un
+  // parpadeo caótico de posiciones.
+  const [layout] = useState<Shape[]>(() =>
+    randomize ? generateRandomShapes(finalSeed) : LAYOUTS[hashString(finalSeed) % LAYOUTS.length]
+  )
+
+  const [scrollY, setScrollY] = useState(0)
 
   // Marcar como montado para evitar errores de hidratación
   useEffect(() => {
@@ -164,113 +220,96 @@ const GeometricPattern: React.FC<Props> = ({
   useEffect(() => {
     if (!enableParallax || !isMounted) return
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return
-      
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = (e.clientX - rect.left) / rect.width - 0.5
-      const y = (e.clientY - rect.top) / rect.height - 0.5
-      
-      setOffset({ x: x * parallaxIntensity, y: y * parallaxIntensity })
+    let ticking = false
+    const handleScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrollY(window.scrollY)
+        ticking = false
+      })
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [enableParallax, parallaxIntensity])
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [enableParallax, isMounted])
 
   return (
     <div
-      ref={containerRef}
       className={`w-full h-full overflow-hidden ${className}`}
       style={{ backgroundColor: `${colors[1]}14` }}
     >
       {isMounted && (
-        <svg 
-          viewBox="0 0 1 1" 
-          preserveAspectRatio="xMidYMid slice" 
+        <svg
+          viewBox="0 0 1 1"
+          preserveAspectRatio="xMidYMid slice"
           className="w-full h-full"
           style={{ filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }}
         >
           {layout.map((shape, i) => {
             const fill = colors[shape.colorIndex]
             const depth = shape.depth ?? 0.5
-            const parallaxOffset = {
-              x: offset.x * depth,
-              y: offset.y * depth,
+            // Fase propia por figura para que no se muevan todas en sincronía
+            const phase = shape.cx * 7 + shape.cy * 13
+
+            let dx = 0
+            let dy = 0
+            if (depth < 0.5) {
+              // Figuras de fondo: desplazamiento tipo parallax, acotado y suave
+              const t = scrollY * 0.0015 + phase
+              dx = Math.sin(t) * parallaxIntensity * depth
+              dy = Math.sin(t * 0.7 + 1) * parallaxIntensity * depth
+            } else {
+              // Figuras cercanas: orbitan alrededor de su posición base
+              const angle = scrollY * 0.0025 + phase
+              const radius = parallaxIntensity * depth
+              dx = Math.cos(angle) * radius
+              dy = Math.sin(angle) * radius
             }
-            const duration = 8 + i * 2
+
+            const cx = shape.cx + dx
+            const cy = shape.cy + dy
 
             if (shape.type === 'circle') {
-              return (
-                <g key={i}>
-                  <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="rotate"
-                    from={`0 0.5 0.5`}
-                    to={`360 0.5 0.5`}
-                    dur={`${duration}s`}
-                    repeatCount="indefinite"
-                  />
-                  <circle 
-                    cx={shape.cx + parallaxOffset.x} 
-                    cy={shape.cy + parallaxOffset.y} 
-                    r={shape.r} 
-                    fill={fill} 
-                    opacity={shape.opacity}
-                  />
-                </g>
-              )
+              return <circle key={i} cx={cx} cy={cy} r={shape.r} fill={fill} opacity={shape.opacity} />
             }
-            if (shape.type === 'rect') {
-              const cx = shape.x + shape.size / 2 + parallaxOffset.x
-              const cy = shape.y + shape.size / 2 + parallaxOffset.y
+
+            if (shape.type === 'square') {
               return (
-                <g key={i}>
-                  <animateTransform
-                    attributeName="transform"
-                    attributeType="XML"
-                    type="rotate"
-                    from={`0 0.5 0.5`}
-                    to={`360 0.5 0.5`}
-                    dur={`${duration}s`}
-                    repeatCount="indefinite"
-                  />
-                  <rect
-                    x={shape.x + parallaxOffset.x}
-                    y={shape.y + parallaxOffset.y}
-                    width={shape.size}
-                    height={shape.size}
-                    fill={fill}
-                    opacity={shape.opacity}
-                    transform={`rotate(${shape.rotate} ${cx} ${cy})`}
-                  />
-                </g>
-              )
-            }
-            
-            const basePoints = shape.points.split(' ').map(p => {
-              const [px, py] = p.split(',').map(Number)
-              return `${px + parallaxOffset.x},${py + parallaxOffset.y}`
-            }).join(' ')
-            
-            return (
-              <g key={i}>
-                <animateTransform
-                  attributeName="transform"
-                  attributeType="XML"
-                  type="rotate"
-                  from={`0 0.5 0.5`}
-                  to={`360 0.5 0.5`}
-                  dur={`${duration}s`}
-                  repeatCount="indefinite"
-                />
-                <polygon 
-                  points={basePoints} 
-                  fill={fill} 
+                <rect
+                  key={i}
+                  x={cx - shape.size / 2}
+                  y={cy - shape.size / 2}
+                  width={shape.size}
+                  height={shape.size}
+                  fill={fill}
                   opacity={shape.opacity}
                 />
-              </g>
+              )
+            }
+
+            if (shape.type === 'rect') {
+              return (
+                <rect
+                  key={i}
+                  x={cx - shape.width / 2}
+                  y={cy - shape.height / 2}
+                  width={shape.width}
+                  height={shape.height}
+                  fill={fill}
+                  opacity={shape.opacity}
+                />
+              )
+            }
+
+            return (
+              <polygon
+                key={i}
+                points={triangleVertices(cx, cy, shape.r, shape.rotation)}
+                fill={fill}
+                opacity={shape.opacity}
+              />
             )
           })}
         </svg>
