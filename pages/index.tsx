@@ -48,7 +48,8 @@ export default function Index({ allPosts}: Props) {
           <SectionShowcase
             title="Aplicaciones web"
             description="Desarrollo de eCommerce, portales B2B, sistemas internos, dashboards y APIs escalables. Trabajamos con Svelte, React/Next.js, Python, Node.js y .NET; bases PostgreSQL/SQL Server y despliegue en AWS/Azure. Entregamos MVPs rápidos, integraciones eficientes y soporte continuo para optimizar procesos y rendimiento."
-            imageSrc="https://www.promedia.es/wp-content/uploads/2024/11/imagen-3.jpg"
+            hasPhoto={false}
+            color="#3a88e7"
             variant="normal"
             reverse={false}
             titleColorClass="text-sky-700"
@@ -57,7 +58,8 @@ export default function Index({ allPosts}: Props) {
           <SectionShowcase
             title="Realidad Virtual"
             description="Creación de experiencias VR para educación, museos, entrenamiento y marketing, compatibles con Meta Quest, PC/VR y WebXR. Desde prototipos hasta soluciones de producción optimizadas para exposición y pruebas de usuario; diseñadas para mejorar la retención y ofrecer experiencias inmersivas sin mareo. Consulte demo."
-            imageSrc="https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2023/09/28/meta-quest-3.jpeg"
+            hasPhoto={false}
+            color="#00450e"
             variant="parallax"
             titleColorClass="text-violet-200"
           />
@@ -66,6 +68,8 @@ export default function Index({ allPosts}: Props) {
             title="Desarrollo de videojuegos"
             description="Desarrollo de juegos indie y serious games (WebGL/PC) con Unity: prototipado, mecánicas, arte 3D básico, sonido, optimización y publicación. Trabajamos con museos, centros educativos e instituciones culturales para crear experiencias interactivas con resultados medibles; títulos y demos publicados en itch.io."
             imageSrc="https://img.itch.zone/aW1hZ2UvMzIyODY4NS8yMzk1MzQzNi5wbmc=/original/At0QlG.png"
+            hasPhoto={false}
+            color="#facc15"
             variant="normal"
             reverse={true}
             titleColorClass="text-amber-300"

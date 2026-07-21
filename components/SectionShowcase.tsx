@@ -1,4 +1,6 @@
 import React from 'react'
+import GeometricPattern from './GeometricPattern'
+import { getAnalogousColors } from '@/lib/color'
 
 type Variant = 'normal' | 'parallax' | 'static3d'
 
@@ -14,6 +16,10 @@ type Props = {
   descriptionColorClass?: string
   /** Tailwind classes for the overlay (parallax) e.g. 'bg-indigo-900/40' */
   overlayClass?: string
+  /** Si es false, en vez de imageSrc se dibujan figuras geométricas con 3 colores análogos */
+  hasPhoto?: boolean
+  /** Color base (hex) usado para derivar la paleta análoga cuando hasPhoto=false */
+  color?: string
 }
 
 const SectionShowcase: React.FC<Props> = ({
@@ -25,20 +31,28 @@ const SectionShowcase: React.FC<Props> = ({
   titleColorClass,
   descriptionColorClass,
   overlayClass,
+  hasPhoto = true,
+  color = '#6366f1',
 }) => {
   const titleColor = titleColorClass ?? (variant === 'parallax' ? 'text-white' : 'text-slate-900')
+  const palette = !hasPhoto ? getAnalogousColors(color) : null
 
   if (variant === 'parallax') {
-    const bgStyle = imageSrc
+    const bgStyle = hasPhoto && imageSrc
       ? { backgroundImage: `url(${imageSrc})` }
       : undefined
 
     return (
       <section
-        className="w-full bg-center bg-cover bg-no-repeat parallax-section"
+        className="w-full bg-center bg-cover bg-no-repeat parallax-section relative"
         style={bgStyle}
       >
-        <div className={overlayClass ?? 'bg-black/40'}>
+        {!hasPhoto && palette && (
+          <div className="absolute inset-0">
+            <GeometricPattern colors={palette} seed={title} />
+          </div>
+        )}
+        <div className={`relative ${overlayClass ?? (hasPhoto ? 'bg-black/40' : '')}`}>
           <div className="max-w-7xl mx-auto px-6 py-20 md:py-32">
             <h2 className={`${titleColor} text-4xl md:text-6xl font-extrabold mb-4`}>{title}</h2>
             <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? 'text-white'}`}>{description}</p>
@@ -53,7 +67,7 @@ const SectionShowcase: React.FC<Props> = ({
       <section className="w-full relative overflow-hidden static-3d-section">
         <div
           className="static-3d-bg"
-          style={imageSrc ? { backgroundImage: `url(${imageSrc})` } : undefined}
+          style={hasPhoto && imageSrc ? { backgroundImage: `url(${imageSrc})` } : undefined}
           aria-hidden
         />
         <div className="max-w-7xl mx-auto px-6 py-20 md:py-32 relative">
@@ -63,7 +77,11 @@ const SectionShowcase: React.FC<Props> = ({
               <p className={`text-lg md:text-xl max-w-3xl ${descriptionColorClass ?? 'text-slate-900'}`}>{description}</p>
             </div>
             <div className="transform-style-3d">
-              {imageSrc ? (
+              {!hasPhoto && palette ? (
+                <div className="relative w-full h-64 md:h-96 shadow-lg rounded-lg overflow-hidden">
+                  <GeometricPattern colors={palette} seed={title} />
+                </div>
+              ) : imageSrc ? (
                 <div className="relative w-full h-64 md:h-96 shadow-lg rounded-lg overflow-hidden">
                   <img
                     src={imageSrc}
@@ -91,7 +109,11 @@ const SectionShowcase: React.FC<Props> = ({
             <p className={`text-base md:text-lg max-w-3xl ${descriptionColorClass ?? 'text-slate-700'}`}>{description}</p>
           </div>
           <div>
-            {imageSrc ? (
+            {!hasPhoto && palette ? (
+              <div className="w-full h-56 md:h-80 rounded-lg overflow-hidden shadow">
+                <GeometricPattern colors={palette} seed={title} />
+              </div>
+            ) : imageSrc ? (
               <div className="w-full h-56 md:h-80 rounded-lg overflow-hidden shadow">
                 <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
               </div>

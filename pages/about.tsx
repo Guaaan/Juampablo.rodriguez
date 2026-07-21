@@ -43,6 +43,7 @@ export default function Index({ allPosts}: Props) {
             description="Desarrollo de eCommerce, portales B2B, sistemas internos, dashboards y APIs escalables. Trabajamos con Svelte, React/Next.js, Python, Node.js y .NET; bases PostgreSQL/SQL Server y despliegue en AWS/Azure. Entregamos MVPs rápidos, integraciones eficientes y soporte continuo para optimizar procesos y rendimiento."
             imageSrc="https://www.promedia.es/wp-content/uploads/2024/11/imagen-3.jpg"
             variant="normal"
+            photo={false}
             reverse={false}
             titleColorClass="text-sky-700"
           />
