@@ -61,7 +61,7 @@ class SeededRandom {
     return min + this.next() * (max - min)
   }
 
-  choice<T>(array: T[]): T {
+  choice<T>(array: readonly T[]): T {
     return array[Math.floor(this.next() * array.length)]
   }
 }

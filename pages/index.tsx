@@ -6,6 +6,7 @@ import Layout from '@/components/layout'
 import SectionShowcase from '@/components/SectionShowcase'
 import { getAllPosts } from '@/lib/api'
 import Head from 'next/head'
+import Link from 'next/link'
 import { CMS_NAME } from '@/lib/constants'
 import Post from '@/interfaces/post'
 
@@ -74,6 +75,15 @@ export default function Index({ allPosts}: Props) {
             reverse={true}
             titleColorClass="text-amber-300"
           />
+          <div className="flex justify-center py-14 md:py-20">
+            <Link
+              href="/juego-de-la-vida"
+              className="px-8 py-3 rounded border border-slate-300 text-lg font-medium hover:bg-slate-50 transition-colors"
+            >
+              ¿Has jugado al juego de la vida?
+            </Link>
+          </div>
+
           {/* el post grande que se ve en medio */}
           {heroPost && (
             <HeroPost
